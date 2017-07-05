@@ -415,7 +415,7 @@ void CharacterBeAttackState::DoHandleInput(CCharacter& character, int input)
 		if (m_cnt >= 2)
 			m_Fell = true;
 		break;
-	case EVENT_BEATTACK_Knock:  //被牛头击飞
+	case EVENT_BEATTACK_KNOCK:  //被牛头击飞
 		character.SetZSpeed(character.s_JumpN );
 		character.SetGravity(character.s_Gravity);
 		m_Clock_PreKey = clock();

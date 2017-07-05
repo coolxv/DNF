@@ -215,7 +215,7 @@ void CMonster_Tau_HittingState::Update()
 
 		if (typeid(*character->GetCurState()) != typeid(CharacterBeAttackState))
 			character->SetState(&s_BeAttacked);
-		character->DoHandleInput(EVENT_BEATTACK_Knock); //»÷·É
+		character->DoHandleInput(EVENT_BEATTACK_KNOCK); //»÷·É
 		character->SetHp(character->GetHp() - m_Monster->GetDamage()*2 + character->GetArmor());
 	}
 }
@@ -262,7 +262,7 @@ void CMonster_Tau_Roar::Update()
 	{
 		if (typeid(*character->GetCurState()) != typeid(CharacterBeAttackState))
 			character->SetState(&s_BeAttacked);
-		character->DoHandleInput(EVENT_BEATTACK_Knock); //»÷·É
+		character->DoHandleInput(EVENT_BEATTACK_KNOCK); //»÷·É
 		character->SetHp(character->GetHp() - m_Monster->GetDamage() * 2 + character->GetArmor());
 	}
 

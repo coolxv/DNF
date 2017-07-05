@@ -8,15 +8,20 @@
 #define FRAMES_TIME ( 1000 / FRAMES_PER_SECOND )
 class CGame
 {
+public:
+	enum GAMESTATE
+	{
+		GAMESTATE_HOME,GAMESTATE_INDUNGEON,GAMESTATE_SELECTDUNGEON
+	};
 private:
 	bool m_IsRunning;
 	void HandleInput(); //处理输入：这些输入包括，来自于交互设备（键盘，鼠标，游戏控制器等等）的输入
 	void Update();	//系统更新（update）：（根据输入或者自发的）对各个子系统进行更新，以决定当前的游戏状态
 	void Render(); //渲染（render）：对整个游戏场景进行渲染。
 	void __MergeMat(Mat& a, Mat& b, Mat& b_, int div);
-	CCharacter* m_Character;
-	CDungeon* m_CurDungeon;
-	CHud* m_Hud;
+	CCharacter* m_Character = NULL;
+	CDungeon* m_CurDungeon = NULL;
+	CHud* m_Hud = NULL;
 	//Dungeon* dungeon_rolland;
 
 	Mat m_Mat_ui;
@@ -24,6 +29,8 @@ private:
 	Mat m_Mat_Game;
 	
 	std::vector<CAnimationEffect*> m_AnimationEffects;
+	
+	int m_GameState;
 public:
 	CGame();
 	~CGame();

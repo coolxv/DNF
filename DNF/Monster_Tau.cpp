@@ -124,7 +124,7 @@ void CMonSter_Tau::DoRender(Mat& mat, int viewX)
 	int xx = m_X - viewX - tx; //相对坐标
 	int yy = m_Y - ty - m_Z / 2 + offsetY;
 	if (xx >= CStage::s_ViewWidth || xx + body.cols <= 0) return;
-	_Draw(mat, viewX, CStage::s_ViewWidth,  CStage::s_ViewHeight ,CStage::s_OffsetY, xx, yy, body, body_mask);
+	Render(mat, viewX, CStage::s_ViewWidth,  CStage::s_ViewHeight ,CStage::s_OffsetY, xx, yy, body, body_mask);
 	//Mat tmp = body, tmp_ = body_mask;
 	////处理人物会有一部分在屏幕外面的情况
 	//if (xx < 0)

@@ -41,8 +41,8 @@ void CCharacter::DoRender(Mat& mat, int viewX)
 	int ty = m_Orientation == DIR_RIGHT ? m_Offset_LeftBottom[m_State->GetMatId()].y : m_Offset_LeftBottom_Left[m_State->GetMatId()].y;
 	Mat ROI;
 	int xx = m_X - viewX - tx; //Ïà¶Ô×ø±ê
-	int yy = m_Y - ty - m_Z / 2 + CStage::s_OffsetY;
-	_Draw(mat, viewX, CStage::s_ViewWidth,CStage::s_ViewHeight, CStage::s_OffsetY, xx, yy, body, body_mask);
+	int yy = m_Y - ty - m_Z / 2 + m_OffsetY;
+	Render(mat, viewX, m_ViewWidth,m_ViewHeight, m_OffsetY, xx, yy, body, body_mask);
 }
 
 void CCharacter::DoHandleInput(int input)
@@ -167,7 +167,7 @@ int CCharacter::GetCurEffect()
 
 bool CCharacter::SetX(int x)
 {
-	if (x >= 10 && x <= m_StageWidth - 50)
+	if (x >= 10 && x <= m_StageWidth -m_Width)
 	{
 		m_X = x;
 		return true;
@@ -176,7 +176,7 @@ bool CCharacter::SetX(int x)
 }
 bool CCharacter::SetY(int y)
 {
-	if (y >= 10 && y <= CStage::s_ViewHeight - 10)
+	if (y >= 10 && y <= m_ViewHeight- 10)
 	{
 		m_Y = y;
 		return true;

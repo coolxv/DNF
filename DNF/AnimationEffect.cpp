@@ -259,7 +259,7 @@ void CAwakeSEffectAnimation::DoRender(Mat& mat, int viewX)
 {
 	if (m_Complete) return;
 	m_Complete = m_MatId == 34;
-	addWeighted(mask, 1 - m_MatId / 34.0, mat(Rect(0, 0, 640, mat.rows)), 1, 0, mat(Rect(0, 0, 640, mat.rows)));
+	addWeighted(mask, 1 - m_MatId / 34.0, mat(Rect(0, 0, mat.cols, mat.rows)), 1, 0, mat(Rect(0, 0, mat.cols, mat.rows)));
 	//Mat ROI = mat(Rect(0, 250, 640, 294));
 	//s_Mat_Draw[m_MatId].copyTo(ROI, s_Mat_Draw_Mask[m_MatId]);
 	//imshow("Text", s_Mat_Draw[m_MatId]);

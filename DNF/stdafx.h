@@ -29,9 +29,11 @@
 #define KEY_EFFECTD 'D'
 #define KEY_EFFECTZ 'Z' //иолТ
 #define KEY_EFFECTS 'S' 
+#define KEY_SPACE 0x20
+
 
 #define EVENT_BEATTACK 8573
-#define EVENT_BEATTACK_Knock 8574
+#define EVENT_BEATTACK_KNOCK 8574
 
 
 #define HUD_MONSTER_HPMAXWIDTH 10000

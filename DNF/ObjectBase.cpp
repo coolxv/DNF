@@ -9,7 +9,7 @@ CObjectBase::~CObjectBase()
 }
 
 
-void CObjectBase::_Draw(Mat& bg, int viewX,int viewWidth,int viewHeight,int offsetY, int x, int y, Mat& mat, Mat& mat_mask)
+void CObjectBase::Render(Mat& bg, int viewX,int viewWidth,int viewHeight,int offsetY, int x, int y, Mat& mat, Mat& mat_mask)
 {
 	int xx = x; //Ïà¶Ô×ø±ê
 	int yy = y;

@@ -25,35 +25,32 @@ void CGame::HandleInput()
 		m_CurDungeon->DoHandleInput(KEY_EFFECTS);
 	if (GetAsyncKeyState(KEY_EFFECTD) & 0x8000)
 		m_CurDungeon->DoHandleInput(KEY_EFFECTD);
-
-	//if (GetAsyncKeyState(VK_UP) & 0x8000)
-	//	printf("%d : up\n", clock());
-	//if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-	//	printf("%d : down\n", clock());
-	//if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-	//	printf("%d : left\n", clock());
-	//if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-	//	printf("%d : right\n", clock());
-	//if (GetAsyncKeyState('X') & 0x8000)
-	//	printf("%d : x\n", clock());
-	//if (GetAsyncKeyState('C') & 0x8000)
-	//	printf("%d : c\n", clock());
-	//if (GetAsyncKeyState('A') & 0x8000)
-	//	printf("%d : a\n", clock());
-	//if (GetAsyncKeyState('Z') & 0x8000)
-	//	printf("%d : z\n", clock());
-	//if (GetAsyncKeyState('S') & 0x8000)
-	//	printf("%d : s\n", clock());
-	//key = waitKey(1);
-	//m_CurDungeon->DoHandleInput(key);
-	//waitKey(1);
-	//mStage->handleInput(key,mCharacter);
-	//人物的键盘处理事件在Stage中被调用，因为对于某些场景，有些按键不需要人物去处理
-	//mCharacter->handleInput(key);
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		m_CurDungeon->DoHandleInput(KEY_SPACE);
 }
 
 void CGame::Update()
 {
+	if (m_CurDungeon->GetIsQuit())
+	{
+		//切换副本
+		CDungeon* next = m_CurDungeon->GetNextDungeon();
+		if (typeid(*next) == typeid(Dungeon_Home))
+			m_GameState = GAMESTATE_HOME;
+		else if (typeid(*next) == typeid(Dungeon_SelectDungeon))
+			m_GameState = GAMESTATE_SELECTDUNGEON;
+		else
+			m_GameState = GAMESTATE_INDUNGEON;
+		delete m_CurDungeon; //释放内存
+		for (auto it = m_AnimationEffects.begin(); it != m_AnimationEffects.end();it++)
+		{
+			delete *it;
+		}
+		m_AnimationEffects.clear();
+		next->SetCharacter(m_Character);
+		next->DoInitDungeon();
+		m_CurDungeon = next;
+	}
 	m_CurDungeon->Update();
 	m_Hud->Update();
 	//mStage->updatestate();
@@ -66,7 +63,7 @@ void CGame::Render()
 	//mStage->render(mat_game,mCharacter);  //人物的绘制会在Stage中的render调用绘制
 
 
-	int viewX = m_CurDungeon->GetCurStage()->GetViewX();
+	int viewX = m_CurDungeon->GetViewX();
 
 	for (auto it = m_AnimationEffects.begin(); it != m_AnimationEffects.end();)
 	{
@@ -81,19 +78,22 @@ void CGame::Render()
 			it++;
 		}
 	}
-	m_Hud->Render(m_Mat_Game);
+	if(m_GameState == GAMESTATE_INDUNGEON)
+		m_Hud->Render(m_Mat_Game);
 	imshow("DNF",m_Mat_Game);
 	waitKey(1);
 }
 
 CGame::CGame()
 {
+	m_GameState = GAMESTATE_HOME;
 	InitRec();
 
 	m_Character = new CCharacter();
 	m_Character->SetAnimationEffectsVector(&m_AnimationEffects);
 
-	m_CurDungeon = new Dungeon_Rolland();
+	//m_CurDungeon = new Dungeon_Rolland();
+	m_CurDungeon = new Dungeon_Home();
 	m_CurDungeon->SetCharacter(m_Character);
 	m_CurDungeon->DoInitDungeon();
 
@@ -112,11 +112,24 @@ void CGame::InitRec()
 
 void CGame::onMouse(int Event, int x, int y, int flags, void* param)
 {
-	m_Hud->HandleMouse(Event, x, y, flags, param);
+	if(GAMESTATE_INDUNGEON)
+		m_Hud->HandleMouse(Event, x, y, flags, param);
+	
+	m_CurDungeon->HandleMouse(Event, x, y, flags, param);
 }
 
 CGame::~CGame()
 {
+	if (m_Character)
+		delete m_Character;
+	if (m_CurDungeon)
+		delete m_CurDungeon;
+	if (m_Hud)
+		delete m_Hud;
+
+	for (auto it = m_AnimationEffects.begin(); it != m_AnimationEffects.end(); it++)
+		delete *it;
+	m_AnimationEffects.clear();
 }
 
 void CGame::Run()

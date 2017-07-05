@@ -25,9 +25,9 @@ protected:
 	int m_MoveDirection; //移动方向
 	int m_Orientation = DIR_RIGHT; //朝向
 
-	void _Draw(Mat& bg,int viewX,int viewWidth,int viewHeight,int offsetY,int x,int y,Mat& mat,Mat& mat_mask);
-
 public:
+	static void Render(Mat& bg, int viewX, int viewWidth, int viewHeight, int offsetY, int x, int y, Mat& mat, Mat& mat_mask);
+
 	static bool Cmp(const CObjectBase* a, const CObjectBase* b)
 	{
 		return a->m_Y - a->m_Thick < b->m_Y - b->m_Thick;

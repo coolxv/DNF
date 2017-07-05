@@ -30,7 +30,8 @@ private:
 	Mat m_Mat_Body[222], m_Mat_Body_Mask[222];
 	Mat m_Mat_LBody[222], m_Mat_LBody_Mask[222];
 	POINT m_Offset_LeftBottom[223], m_Offset_LeftBottom_Left[223]; //角色对应图片左下角偏移
-	int m_StageWidth;  //当前所在场景的最大宽度
+	int m_StageWidth;  //当前所在场景的最大宽度	
+	int m_ViewWidth, m_ViewHeight, m_OffsetY;
 	bool m_IsAttacking = false;
 	bool m_isBackJumping = false;
 	std::vector<CAnimationEffect*>* m_Vector_AnimationEffects;
@@ -74,6 +75,7 @@ public://get/set
 	void SetJumpDir(int dir) { m_JumpDir = dir; };
 	void SetMoveDirection(int dir);
 	void SetStageWidth(int width) { m_StageWidth = width; }
+	void SetViewSize(int width, int height, int offsety) { m_ViewWidth = width; m_ViewHeight = height; m_OffsetY = offsety; }
 	void SetHp(int hp);
 };
 
