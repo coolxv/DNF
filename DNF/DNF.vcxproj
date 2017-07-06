@@ -151,6 +151,10 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharacterState.cpp" />
     <ClCompile Include="Dungeon.cpp" />
+    <ClCompile Include="Dungeon_Home.cpp" />
+    <ClCompile Include="Dungeon_Rolland.cpp" />
+    <ClCompile Include="Dungeon_RollandDeep.cpp" />
+    <ClCompile Include="Dungeon_SelectDungeon.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="main.cpp" />
@@ -164,6 +168,7 @@
     <ClCompile Include="Monster_Tau_State.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="OtherObject.cpp" />
+    <ClCompile Include="RollandDeepStage.cpp" />
     <ClCompile Include="RollandStage.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="stdafx.cpp" />
@@ -173,6 +178,10 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterState.h" />
     <ClInclude Include="Dungeon.h" />
+    <ClInclude Include="Dungeon_Home.h" />
+    <ClInclude Include="Dungeon_Rolland.h" />
+    <ClInclude Include="Dungeon_RollandDeep.h" />
+    <ClInclude Include="Dungeon_SelectDungeon.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Hud.h" />
     <ClInclude Include="Monster.h" />
@@ -185,6 +194,7 @@
     <ClInclude Include="Monster_Tau_State.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="OtherObject.h" />
+    <ClInclude Include="RollandDeepStage.h" />
     <ClInclude Include="RollandStage.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="stdafx.h" />

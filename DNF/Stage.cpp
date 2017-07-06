@@ -113,7 +113,6 @@ void CStage::HandleInput(int input)
 
 void CStage::Update(CDungeon* dungeon)
 {
-
 	bool quit = false;
 	for (auto it = m_OtherObjects.begin(); it != m_OtherObjects.end(); )
 	{

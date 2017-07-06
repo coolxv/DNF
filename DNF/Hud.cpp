@@ -22,6 +22,16 @@ void CHud::Render(Mat& mat)
 	if(m_Hp_onMouse)
 		putText(mat, format("%d/%d", m_Character->GetHp(), m_Character->GetTotalHp()), Point(10, 550), CV_FONT_HERSHEY_PLAIN
 			, 0.6, Scalar(255, 255, 255), 1);
+	m_FPSCount++;
+	clock_t cur = clock();
+	if (cur - m_Clock_PreRender >= 1000) //1s计算一次平均帧率
+	{
+		m_fps = m_FPSCount / ((cur - m_Clock_PreRender) / 1000);
+		m_Clock_PreRender = cur;
+		m_FPSCount = 0;
+	}
+	putText(mat, format("FPS:%d", m_fps), Point(320, 30), CV_FONT_HERSHEY_PLAIN
+		, 1, Scalar(255, 255, 255), 1);
 }
 
 void CHud::__ShowHp(Mat& mat, int hp_percentage)
@@ -73,6 +83,9 @@ void CHud::HandleMouse(int Event, int x, int y, int flags, void* param)
 
 void CHud::Initial()
 {
+	m_fps = 0;
+	m_FPSCount = 0;
+	m_Clock_PreRender = clock();
 	m_Mat_Hud = imread("./ImagePacks2/BaseUI/mainhud.png", -1);
 	m_Mat_Hud_Mask = imread("./ImagePacks2/BaseUI/mainhud.png", 0);
 	m_Mat_Hp = imread("./ImagePacks2/BaseUI/hp.png", -1);

@@ -33,5 +33,9 @@ private:
 	Mat m_Mat_Mp,m_Mat_Mp_Mask;
 
 	bool m_Hp_onMouse;
+
+	int m_FPSCount;
+	int m_fps;
+	clock_t m_Clock_PreRender;
 };
 

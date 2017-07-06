@@ -1,10 +1,12 @@
 #pragma once
 #include "Dungeon.h"
+#include "Dungeon_Home.h"
+#include "Dungeon_SelectDungeon.h"
 #include "OtherObject.h"
 #include "AnimationEffect.h"
 #include "Hud.h"
 
-#define FRAMES_PER_SECOND  500
+#define FRAMES_PER_SECOND  100
 #define FRAMES_TIME ( 1000 / FRAMES_PER_SECOND )
 class CGame
 {

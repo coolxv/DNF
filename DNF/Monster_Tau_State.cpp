@@ -97,16 +97,19 @@ void CMonster_Tau_AttackingState::Update()
 	Rect MonsterBodyRect = m_Monster->GetRectXY();
 	Rect AttackRect = character->GetAttackRect();
 	Rect intersection = (MonsterBodyRect&AttackRect);
+
+	//Å£Í·¹Ö¹¥»÷Ê±±»¹¥»÷²»»á±»´ò¶Ï£¬µ«ÊÇÓÐÉËº¦
 	if (intersection.area() != 0 && character->GetAttacking())
 	{
 		//m_Monster->SetState(new CMonster_Tau_BeAttackedState(m_Monster));
 		int charactMatId = character->GetCurState()->GetMatId();
-		if (m_beattackId != charactMatId)
-		{
+		int characteffect = character->GetCurEffect();
+		if ((characteffect == EFFECTX || characteffect == EFFECTZ || characteffect == EFFECTS || characteffect == EFFECTS2 || characteffect == EFFECTD)
+			&& m_beattackId != charactMatId)
 			m_beattackId = charactMatId;
-
+		{
 			int damage = -INF;
-			bool crit = false; //±©»÷
+			bool crit = false; //±©»÷l
 
 			damage = character->GetDamage(character->GetCurEffect(), crit);
 
@@ -117,8 +120,8 @@ void CMonster_Tau_AttackingState::Update()
 				new CPhysicalAttackAnimation(point3, 0);
 			character->GetAnimationEffects()->push_back(PhyAttackAnimation);
 
-			damage -= +m_Monster->GetArmor();
-			m_Monster->SetHp(m_Monster->GetHp() );
+			damage -= m_Monster->GetArmor();
+			m_Monster->SetHp(m_Monster->GetHp() - damage);
 			character->GetAnimationEffects()->push_back(
 				new CNumberAnimation(damage, Point3i(m_Monster->GetX(), m_Monster->GetY(), m_Monster->GetHeight() * 2),
 					crit ? 1 : 0));
@@ -143,6 +146,7 @@ void CMonster_Tau_AttackingState::Update()
 			character->DoHandleInput(EVENT_BEATTACK);
 			character->DoHandleInput(EVENT_BEATTACK);
 
+			m_Monster->GetStage()->AddScore(-(m_Monster->GetDamage() - character->GetArmor()));
 			character->SetHp(character->GetHp() - m_Monster->GetDamage()+character->GetArmor());
 		}
 		m_Clock_PreUpdate = cur;
@@ -216,6 +220,8 @@ void CMonster_Tau_HittingState::Update()
 		if (typeid(*character->GetCurState()) != typeid(CharacterBeAttackState))
 			character->SetState(&s_BeAttacked);
 		character->DoHandleInput(EVENT_BEATTACK_KNOCK); //»÷·É
+
+		m_Monster->GetStage()->AddScore(-(m_Monster->GetDamage() * 2 - character->GetArmor()));
 		character->SetHp(character->GetHp() - m_Monster->GetDamage()*2 + character->GetArmor());
 	}
 }
@@ -263,6 +269,7 @@ void CMonster_Tau_Roar::Update()
 		if (typeid(*character->GetCurState()) != typeid(CharacterBeAttackState))
 			character->SetState(&s_BeAttacked);
 		character->DoHandleInput(EVENT_BEATTACK_KNOCK); //»÷·É
+		m_Monster->GetStage()->AddScore(-(m_Monster->GetDamage() * 2 - character->GetArmor()));
 		character->SetHp(character->GetHp() - m_Monster->GetDamage() * 2 + character->GetArmor());
 	}
 

@@ -118,8 +118,10 @@ void CMonster::SetHp(int hp)
 	else if (hp>m_TotalHp)
 		m_Hp = m_TotalHp;
 	else
+	{
+		m_Stage->AddScore(m_Hp-hp); //角色造成的伤害
 		m_Hp = hp;
-
+	}
 	if (m_Hp <= 0)
 	{
 		SetDead(true);
@@ -181,5 +183,8 @@ void CMonster::Update()
 		m_State->Update();
 	}
 	if (m_Stage->GetCharacter()->GetCurState()->GetMatId() == 138)
+	{
+		m_Stage->AddScore(m_Hp);
 		SetDead(true);
+	}
 }

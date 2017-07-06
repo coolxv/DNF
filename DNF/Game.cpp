@@ -35,9 +35,9 @@ void CGame::Update()
 	{
 		//ÇĞ»»¸±±¾
 		CDungeon* next = m_CurDungeon->GetNextDungeon();
-		if (typeid(*next) == typeid(Dungeon_Home))
+		if (typeid(*next) == typeid(CDungeon_Home))
 			m_GameState = GAMESTATE_HOME;
-		else if (typeid(*next) == typeid(Dungeon_SelectDungeon))
+		else if (typeid(*next) == typeid(CDungeon_SelectDungeon))
 			m_GameState = GAMESTATE_SELECTDUNGEON;
 		else
 			m_GameState = GAMESTATE_INDUNGEON;
@@ -93,7 +93,7 @@ CGame::CGame()
 	m_Character->SetAnimationEffectsVector(&m_AnimationEffects);
 
 	//m_CurDungeon = new Dungeon_Rolland();
-	m_CurDungeon = new Dungeon_Home();
+	m_CurDungeon = new CDungeon_Home();
 	m_CurDungeon->SetCharacter(m_Character);
 	m_CurDungeon->DoInitDungeon();
 
@@ -114,7 +114,8 @@ void CGame::onMouse(int Event, int x, int y, int flags, void* param)
 {
 	if(GAMESTATE_INDUNGEON)
 		m_Hud->HandleMouse(Event, x, y, flags, param);
-	
+	for (auto it = m_AnimationEffects.begin(); it != m_AnimationEffects.end(); it++)
+		(*it)->onMouse(Event, x, y, flags, param);
 	m_CurDungeon->HandleMouse(Event, x, y, flags, param);
 }
 

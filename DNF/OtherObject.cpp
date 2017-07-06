@@ -396,7 +396,7 @@ bool ThrowStone::Update(CStage& stage, CDungeon* dungeon)
 			//ÊÇ·ñÒªÇÐ»»×´Ì¬
 			if (typeid(*character->GetCurState()) != typeid(CharacterBeAttackState))
 				character->SetState(&s_BeAttacked);
-
+			dungeon->AddScore(-m_Power);
 			character->SetHp(character->GetHp() - m_Power);
 			character->DoHandleInput(EVENT_BEATTACK); //Attack
 			m_Complete = true;

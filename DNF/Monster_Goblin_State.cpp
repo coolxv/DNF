@@ -126,7 +126,8 @@ void CMonster_Goblin_AttackingState::Update()
 			if (typeid(*character->GetCurState()) != typeid(CharacterBeAttackState))
 				character->SetState(&s_BeAttacked);
 			character->DoHandleInput(EVENT_BEATTACK);
-			character->SetHp(character->GetHp() - m_Monster->GetDamage() + character->GetArmor());
+			m_Monster->GetStage()->AddScore(-(m_Monster->GetDamage() - character->GetArmor()));
+			character->SetHp(character->GetHp() -( m_Monster->GetDamage() - character->GetArmor()));
 		}
 		m_MatId++;
 		if (m_MatId == 5)

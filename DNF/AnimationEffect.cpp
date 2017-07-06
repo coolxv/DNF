@@ -1,6 +1,10 @@
 #include "AnimationEffect.h"
 #include "Stage.h"
-
+#include "Dungeon.h"
+#include "Dungeon_Home.h"
+#include "Dungeon_SelectDungeon.h"
+#include "Dungeon_Rolland.h"
+#include "Dungeon_RollandDeep.h"
 
 CAnimationEffect::CAnimationEffect()
 {
@@ -418,5 +422,313 @@ void CNumberAnimation::DoRender(Mat& mat, int viewX)
 		if (m_Zspeed==0)
 			m_Clock_stay = clock();
 		m_Clock_PreRender = clock();
+	}
+}
+
+Mat CResultAnimation::s_Mat_panel = imread("./ImagePacks2/Animation/result/panel.png", -1);
+Mat CResultAnimation::s_Mat_score_text1 = imread("./ImagePacks2/Animation/result/score_text1.png", -1);
+Mat CResultAnimation::s_Mat_score_text2 = imread("./ImagePacks2/Animation/result/score_text2.png", -1);
+Mat CResultAnimation::s_Mat_score_text3 = imread("./ImagePacks2/Animation/result/score_text3.png", -1);
+Mat CResultAnimation::s_Mat_time_text = imread("./ImagePacks2/Animation/result/time_text.png", -1);
+Mat CResultAnimation::s_Mat_exp_text = imread("./ImagePacks2/Animation/result/exp_text.png", -1);
+Mat CResultAnimation::s_Mat_min = imread("./ImagePacks2/Animation/result/min.png", -1);
+Mat CResultAnimation::s_Mat_sec = imread("./ImagePacks2/Animation/result/sec.png", -1);
+Mat CResultAnimation::s_Mat_SelectBG = imread("./ImagePacks2/Animation/result/select.png", -1);
+Mat CResultAnimation::s_Mat_Return[] = { imread("./ImagePacks2/Animation/result/return0.png",-1),imread("./ImagePacks2/Animation/result/return1.png",-1) };
+Mat CResultAnimation::s_Mat_Other[] = { imread("./ImagePacks2/Animation/result/other0.png",-1),imread("./ImagePacks2/Animation/result/other1.png",-1) };
+Mat CResultAnimation::s_Mat_Continue[] = { imread("./ImagePacks2/Animation/result/continue0.png",-1),imread("./ImagePacks2/Animation/result/continue1.png",-1) };
+
+Mat CResultAnimation::s_Mat_Number[] = 
+{
+	imread("./ImagePacks2/Animation/result/number/0.png",-1),
+	imread("./ImagePacks2/Animation/result/number/1.png",-1),
+	imread("./ImagePacks2/Animation/result/number/2.png",-1),
+	imread("./ImagePacks2/Animation/result/number/3.png",-1),
+	imread("./ImagePacks2/Animation/result/number/4.png",-1),
+	imread("./ImagePacks2/Animation/result/number/5.png",-1),
+	imread("./ImagePacks2/Animation/result/number/6.png",-1),
+	imread("./ImagePacks2/Animation/result/number/7.png",-1),
+	imread("./ImagePacks2/Animation/result/number/8.png",-1),
+	imread("./ImagePacks2/Animation/result/number/9.png",-1)
+};
+Mat CResultAnimation::s_Mat_ScoreRank[] =
+{
+	imread("./ImagePacks2/Animation/result/rank/0.png",-1),
+	imread("./ImagePacks2/Animation/result/rank/1.png",-1),
+	imread("./ImagePacks2/Animation/result/rank/2.png",-1),
+	imread("./ImagePacks2/Animation/result/rank/3.png",-1),
+	imread("./ImagePacks2/Animation/result/rank/4.png",-1),
+	imread("./ImagePacks2/Animation/result/rank/5.png",-1),
+	imread("./ImagePacks2/Animation/result/rank/6.png",-1),
+	imread("./ImagePacks2/Animation/result/rank/7.png",-1),
+	imread("./ImagePacks2/Animation/result/rank/8.png",-1)
+};
+
+
+CResultAnimation::CResultAnimation(int score, int score_rank, int exp, int min, int sec, int lsec
+	, int min_record, int sec_record, int lsec_record, CDungeon* cur_dungeon)
+	:m_Score(score), m_Score_Rank(score_rank), m_Exp(exp), m_Min(min), m_Sec(sec), m_LSec(lsec)
+	,m_Min_Record(min_record),m_Sec_Record(sec_record),m_LSec_Record(lsec_record),m_CurDungeon(cur_dungeon)
+{
+	m_StartTime = clock();
+	m_IsSelecting =false;
+	m_selected = NONE;
+	m_rect_return = Rect(Point2i(482, 176), Point2i(543, 192));
+	m_rect_other = Rect(Point2i(461, 146), Point2i(571, 162));
+	m_rect_continue = Rect(Point2i(482, 115), Point2i(543, 131));
+}
+
+CResultAnimation::~CResultAnimation()
+{
+
+}
+
+
+void CResultAnimation::DoRender(Mat& bg, int viewX)
+{
+	int cur = clock() - m_StartTime;
+	if (cur > 3500)
+	{
+		//加载 "是否继续" 界面
+		m_IsSelecting = true;
+		__Merge(bg, s_Mat_SelectBG, 430, 60, 250);
+
+		__Merge(bg,m_selected==CONTINUE? s_Mat_Continue[1]: s_Mat_Continue[0], 480, 115, 50);
+		__Merge(bg, m_selected == OTHERDUNGEON ? s_Mat_Other[1]: s_Mat_Other[0], 460, 145, 50);
+		__Merge(bg, m_selected == RETURN ? s_Mat_Return[1]: s_Mat_Return[0], 480, 175, 50);
+	}
+	else if (cur > 3000)
+	{
+		cur -= 3000;
+		//+ (cur*1.0 / 500)*(bg.cols - 456)
+		__Merge(bg, s_Mat_score_text1, 456 + (cur*1.0 / 500)*(bg.cols - 456), 65, 100);
+		__Merge(bg, s_Mat_score_text2, 390 + (cur*1.0 / 500)*(bg.cols - 390), 140, 50);
+		__Merge(bg, s_Mat_score_text3, 390 + (cur*1.0 / 500)*(bg.cols - 390), 310, 50);
+		__Merge(bg, s_Mat_time_text, 390 + (cur*1.0 / 500)*(bg.cols - 390), 348, 50);
+		__Merge(bg, s_Mat_ScoreRank[m_Score_Rank], 416 + (cur*1.0 / 500)*(bg.cols - 416), 160, 50);
+		__Merge(bg, s_Mat_exp_text, 408 + (cur*1.0 / 500)*(bg.cols - 408), 432, 200);
+	}
+	else
+	{
+		if (cur >= 400)
+			addWeighted(s_Mat_panel, 0.5, bg(Rect(370, 120, 250, 360)), 0.5, 0, bg(Rect(370, 120, 250, 360)));
+		else
+			addWeighted(s_Mat_panel, (cur*1.0) / 400 / 2, bg(Rect(370, 120, 250, 360)), 0.5, 0, bg(Rect(370, 120, 250, 360)));
+
+		////---------------------"成绩" 动画 文字456,65------------------------
+		if (cur >= 400)
+			__Merge(bg, s_Mat_score_text1, 456, 65, 100);
+		else
+			__Merge(bg, s_Mat_score_text1, bg.cols - (int)((cur) / 400.0 * (bg.cols - 456)), 65, 100);
+
+		//------------------600~1000 "评分"文字动画-----------------------
+		if (cur > 1000)
+			__Merge(bg, s_Mat_score_text2, 390, 140, 50);
+		else if (cur > 600)
+			__Merge(bg, s_Mat_score_text2, bg.cols - (int)((cur - 600) / 400.0 * (bg.cols - 390)), 140, 50);
+
+		//------------------650~1050 "评分点数"文字动画-----------------------
+		if (cur > 1050)
+			__Merge(bg, s_Mat_score_text3, 390, 310, 50);
+		else if (cur > 650)
+			__Merge(bg, s_Mat_score_text3, bg.cols - (int)((cur - 650) / 400.0 * (bg.cols - 390)), 310, 50);
+
+		//------------------700~1100 "通过时间"文字动画-----------------------
+		if (cur > 1100)
+			__Merge(bg, s_Mat_time_text, 390, 348, 50);
+		else if (cur > 700)
+			__Merge(bg, s_Mat_time_text, bg.cols - (int)((cur - 700) / 400.0 * (bg.cols - 390)), 348, 50);
+
+
+		//------------------900~1300 评分等级动画----------------------- 416,160
+		if (cur > 1300)
+			__Merge(bg, s_Mat_ScoreRank[m_Score_Rank], 416, 160, 50);
+		else if (cur > 900)
+			__Merge(bg, s_Mat_ScoreRank[m_Score_Rank], bg.cols - (int)((cur - 900) / 400.0 * (bg.cols - 416)), 160, 50);
+
+
+		//------------------1400~1800 "总经验"文字 动画  408,432
+		if (cur > 1800)
+			__Merge(bg, s_Mat_exp_text, 408, 432, 200);
+		else if (cur > 1400)
+			__Merge(bg, s_Mat_exp_text, bg.cols - (int)((cur - 1400) / 400.0 * (bg.cols - 408)), 432, 200);
+
+		//------------------1200~1600 评价点数数字动画  530,333
+		if (cur > 1600)
+			__ShowNumber(bg, 558, 308, m_Score);
+		else if (cur > 1200)
+			__ShowNumber(bg, 558, 345 - (int)((cur - 1200) / 400.0 * (345 - 308)), m_Score);
+
+		//------------------1300~1700 通关时间 475,350
+		if (cur > 1700)
+			__ShowTime(bg, 455, 345, m_Min, m_Sec, m_LSec);
+		else if (cur > 1300)
+			__ShowTime(bg, 455, 365 - (int)((cur - 1300) / 400.0 * (365 - 345)), m_Min, m_Sec, m_LSec);
+
+		//------------------1300~1700 最佳纪录
+		if (cur > 1700)
+			__ShowTime(bg, 455, 368, m_Min_Record, m_Sec_Record, m_LSec_Record);
+		else if (cur > 1300)
+			__ShowTime(bg, 455, 388 - (int)((cur - 1300) / 400.0 * (388 - 368)), m_Min_Record, m_Sec_Record, m_LSec_Record);
+
+		//------------------1800~2400 总经验数字动画  550,425
+		if (cur > 2200)
+			__ShowNumber(bg, 560, 435, m_Exp);
+		else if (cur > 1800)
+			__ShowNumber(bg, 560, 475 - (int)((cur - 1800) / 400.0 * (475 - 435)), m_Exp);
+	}
+}
+
+void CResultAnimation::onMouse(int Event, int x, int y, int flags, void* param)
+{
+	printf("%d %d,%d\n", Event, x, y);
+	Point2i point(x,y);
+	if (m_IsSelecting)
+	{
+		switch (Event)
+		{
+		case CV_EVENT_MOUSEMOVE:
+			if (m_rect_return.contains(point))
+				m_selected = RETURN;
+			else if (m_rect_other.contains(point))
+				m_selected = OTHERDUNGEON;
+			else if (m_rect_continue.contains(point))
+				m_selected = CONTINUE;
+			else
+				m_selected = NONE;
+			break;
+		case CV_EVENT_LBUTTONUP:
+			if (m_selected == RETURN)
+			{
+				m_CurDungeon->SetNextDungeon(new CDungeon_Home());
+				m_CurDungeon->SetQuit(true);
+				m_Complete = true;
+			}
+			else if (m_selected == OTHERDUNGEON)
+			{
+				m_CurDungeon->SetNextDungeon(new CDungeon_SelectDungeon());
+				m_CurDungeon->SetQuit(true);
+				m_Complete = true;
+			}
+			else if (m_selected == CONTINUE)
+				{
+					if(typeid(*m_CurDungeon) == typeid(CDungeon_RollandDeep))
+						m_CurDungeon->SetNextDungeon(new CDungeon_RollandDeep());
+					else if (typeid(*m_CurDungeon) == typeid(CDungeon_Rolland))
+						m_CurDungeon->SetNextDungeon(new CDungeon_Rolland());
+					m_CurDungeon->SetQuit(true);
+					m_Complete = true;
+				}
+			break;
+		}
+	}
+}
+
+void CResultAnimation::__ShowNumber(Mat& bg, int x, int y, int num)
+{
+	std::vector<int>v;
+	while (num)
+	{
+		v.push_back(num % 10);
+		num /= 10;
+	}
+	x = x - ((int)v.size() * 22 / 2);
+	for (int i = 0; i < v.size(); i++)
+	{
+		int num = v[v.size() - i - 1];
+		for (int r = 0; r < s_Mat_Number[num].rows; r++)
+		{
+			if (r + y >= bg.rows)break;
+
+			uchar* bgdata = bg.ptr(r + y);
+			uchar* numdata = s_Mat_Number[num].ptr(r);
+
+			for (int c = 0; c < s_Mat_Number[num].cols; c++)
+			{
+				int k = c * 4;
+				if (x * 4 + (s_Mat_Number[num].cols - 5) * 4 * i + k >= bg.cols * 4)break;
+				if (numdata[k + 3] > 100)
+				{
+					bgdata[x * 4 + (s_Mat_Number[num].cols - 5) * 4 * i + k] = numdata[k];
+					bgdata[x * 4 + (s_Mat_Number[num].cols - 5) * 4 * i + k + 1] = numdata[k + 1];
+					bgdata[x * 4 + (s_Mat_Number[num].cols - 5) * 4 * i + k + 2] = numdata[k + 2];
+					//bgdata[x * 4 + i*number[num].cols * 4 + k + 3] = numdata[k + 3];
+				}
+			}
+		}
+	}
+}
+
+
+void CResultAnimation::__ShowTime(Mat& bg, int x, int y, int min, int sec, int lsec)
+{
+	//12,11,34
+	int xx = x, yy = y;
+	std::vector<int>v;
+	while (min)
+	{
+		v.push_back(min % 10);
+		min /= 10;
+	}
+	if (v.size() == 0)v.push_back(0);
+	for (int i = 0; i < v.size(); i++)
+	{
+		int num = v[(int)v.size() - i - 1];
+		xx += s_Mat_Number[num].cols-6;
+		__Merge(bg, s_Mat_Number[num], xx, y,50);
+	}
+	xx += 17;
+	__Merge(bg, s_Mat_min, xx, y, 50);
+	v.clear();
+
+	while (sec)
+	{
+		v.push_back(sec % 10);
+		sec /= 10;
+	}
+	if (v.size() == 0)v.push_back(0);
+	for (int i = 0; i < v.size(); i++)
+	{
+		int num = v[(int)v.size() - i - 1];
+		xx += s_Mat_Number[num].cols -6;
+		__Merge(bg, s_Mat_Number[num], xx, y, 50);
+	}
+	xx += 17;
+	__Merge(bg, s_Mat_sec, xx, y, 50);
+	v.clear();
+
+	while (lsec)
+	{
+		v.push_back(lsec % 10);
+		lsec /= 10;
+	}
+	if (v.size() == 0)v.push_back(0);
+	for (int i = 0; i < v.size(); i++)
+	{
+		int num = v[(int)v.size() - i - 1];
+		xx += s_Mat_Number[num].cols -6;
+		__Merge(bg, s_Mat_Number[num], xx, y, 50);
+	}
+}
+
+void CResultAnimation::__Merge(Mat& a, Mat& b, int x, int y, int h)
+{
+	for (int i = 0; i < b.rows; i++)
+	{
+		if (i + y >= a.rows)break;
+		uchar* adata = a.ptr(i + y);
+		uchar* bdata = b.ptr(i);
+		for (int j = 0; j < b.cols; j++)
+		{
+			int k = j * 4;
+			if (x * 4 + k >= a.cols * 4)break;
+			if (bdata[k + 3] > h)
+			{
+				adata[x * 4 + k] = bdata[k];
+				adata[x * 4 + k + 1] = bdata[k + 1];
+				adata[x * 4 + k + 2] = bdata[k + 2];
+				adata[x * 4 + k + 3] = bdata[k + 3];
+			}
+		}
 	}
 }

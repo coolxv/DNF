@@ -75,6 +75,21 @@
     <ClCompile Include="Monster_BossGoblin_State.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Dungeon_Rolland.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon_SelectDungeon.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon_Home.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon_RollandDeep.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RollandDeepStage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -135,6 +150,21 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Monster_BossGoblin_State.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon_Rolland.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon_SelectDungeon.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon_Home.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon_RollandDeep.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RollandDeepStage.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

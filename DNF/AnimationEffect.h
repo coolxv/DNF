@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+class CDungeon;
 class CAnimationEffect
 {
 public:
@@ -7,6 +8,7 @@ public:
 	virtual ~CAnimationEffect();
 	virtual void DoRender(Mat& mat, int viewX) = 0;
 	bool GetComplete() { return m_Complete; }
+	virtual void onMouse(int Event, int x, int y, int flags, void* param) {};
 protected:
 	bool m_Complete;
 	int m_MatId;
@@ -73,4 +75,40 @@ private:
 	Point3i m_CurPos;
 	int m_length;
 	std::vector<int> m_v_num;
+};
+
+class CResultAnimation
+	:public CAnimationEffect
+{
+private:
+	enum __SELECT
+	{
+		RETURN, CONTINUE, OTHERDUNGEON, NONE
+	};
+public:
+	static Mat s_Mat_panel,s_Mat_time_text,s_Mat_score_text1, s_Mat_score_text2, s_Mat_score_text3,s_Mat_exp_text;
+	static Mat s_Mat_min, s_Mat_sec;
+	static Mat s_Mat_Number[10],s_Mat_ScoreRank[9];
+
+	static Mat s_Mat_SelectBG,s_Mat_Return[2],s_Mat_Other[2],s_Mat_Continue[2];
+	CResultAnimation(int score,int score_rank,int exp,int min,int sec,int lsec
+		,int min_record,int sec_record,int lsec_record,CDungeon* cur_dungeon);
+	~CResultAnimation();
+	void DoRender(Mat& mat, int viewX);
+
+	void onMouse(int Event, int x, int y, int flags, void* param);
+private:
+	void __Merge(Mat& a, Mat& b, int x, int y, int h);
+	void __ShowNumber(Mat& bg, int x, int y, int num);
+	void __ShowTime(Mat& bg, int x, int y, int min, int sec, int lsec);
+	int m_Score;
+	int m_Score_Rank;
+	int m_Exp;
+	int m_Min, m_Sec, m_LSec;
+	int m_Min_Record, m_Sec_Record, m_LSec_Record;
+	bool m_IsSelecting;
+	int m_selected;
+	Rect m_rect_return,m_rect_other,m_rect_continue;
+	CDungeon* m_CurDungeon;
+	clock_t m_StartTime;
 };

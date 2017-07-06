@@ -35,6 +35,9 @@ public:
 	void SetNextStage(NEXT_STAGE n) { m_NextStage = n; }
 	NEXT_STAGE GetNextStage() { return m_NextStage; }
 	void SetCharacter(CCharacter* p) { m_Character = p; }
+	void SetScorePointer(int* p) {m_DungeonScorePointer = p;}
+	void AddScore(int add) { (*m_DungeonScorePointer) += add; }
+
 	CCharacter* GetCharacter() { return m_Character; }
 
 	int GetStageWidth() { return m_StageWidth; }
@@ -67,6 +70,7 @@ protected:
 	Mat m_Mat_TargetMonsterAvator;
 	String m_TargetMonsterName;
 	bool m_isTargetMonsterBoss;
+	int*  m_DungeonScorePointer;
 	//Font m_Font_MonsterHpHud;
 };
 
