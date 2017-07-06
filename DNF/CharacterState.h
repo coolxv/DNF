@@ -63,7 +63,6 @@ private:
 	int m_AnimationCount = 0; //动画1计次， 动画1播放3次才播放动画2
 };
 
-
 class CharacterNormalAttackingState :
 	public CCharacterState
 {
@@ -85,15 +84,6 @@ private:
 	clock_t m_Clock_PreJumpMove;
 };
 
-class CharacterEffectingState :
-	public CCharacterState
-{
-public:
-	void DoHandleInput(CCharacter& character, int input);
-	void UpdateState(CCharacter& character);
-	void InitState(CCharacter& character);
-};
-
 class CharacterBeAttackState :
 	public CCharacterState
 {
@@ -106,7 +96,16 @@ private:
 	bool m_Fell;
 };
 
-class CharacterUEffectingSttae
+class CharacterZEffectingState :
+	public CCharacterState
+{
+public:
+	void DoHandleInput(CCharacter& character, int input);
+	void UpdateState(CCharacter& character);
+	void InitState(CCharacter& character);
+};
+
+class CharacterSEffectingSttae
 	:public CCharacterState
 {
 public:
@@ -131,7 +130,7 @@ static CharacterWalkintState s_Walking;
 static CharacterStandingState s_Standing;
 static CharacterNormalAttackingState s_NAttacking;
 static CharacterJumpingState s_Jumping;
-static CharacterEffectingState s_Effecting;
+static CharacterZEffectingState s_Effecting;
 static CharacterBeAttackState s_BeAttacked;
-static CharacterUEffectingSttae s_UEffecting;
+static CharacterSEffectingSttae s_SEffecting;
 static CharacterDEffectingSttae s_DEffecting;

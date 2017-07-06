@@ -35,11 +35,11 @@ void CGame::Update()
 	{
 		//切换副本
 		CDungeon* next = m_CurDungeon->GetNextDungeon();
-		if (typeid(*next) == typeid(CDungeon_Home))
+		if (typeid(*next) == typeid(CDungeon_Home) || typeid(*next) == typeid(CDungeon_Comics)|| typeid(*next) == typeid(CDungeon_Start))
 			m_GameState = GAMESTATE_HOME;
 		else if (typeid(*next) == typeid(CDungeon_SelectDungeon))
 			m_GameState = GAMESTATE_SELECTDUNGEON;
-		else
+		else 
 			m_GameState = GAMESTATE_INDUNGEON;
 		delete m_CurDungeon; //释放内存
 		for (auto it = m_AnimationEffects.begin(); it != m_AnimationEffects.end();it++)
@@ -93,7 +93,9 @@ CGame::CGame()
 	m_Character->SetAnimationEffectsVector(&m_AnimationEffects);
 
 	//m_CurDungeon = new Dungeon_Rolland();
-	m_CurDungeon = new CDungeon_Home();
+	//m_CurDungeon = new CDungeon_Home();
+	m_CurDungeon = new CDungeon_Start();
+	//m_CurDungeon = new CDungeon_Comics();
 	m_CurDungeon->SetCharacter(m_Character);
 	m_CurDungeon->DoInitDungeon();
 

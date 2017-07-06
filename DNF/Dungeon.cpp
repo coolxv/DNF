@@ -7,7 +7,7 @@
 
 CDungeon::CDungeon()
 {
-	m_clock_statr = clock();
+	m_Clock_Statr = clock();
 	m_score = 0;
 	m_IsClearance = false;
 }
@@ -33,6 +33,29 @@ void CDungeon::SwitchStage(CStage * stage)
 {
 	m_CurStage = stage;
 	stage->InitStage();
+}
+
+
+void CDungeon::_Merge(Mat& a, Mat& b, int x, int y, int alpha)
+{
+	for (int i = 0; i < b.rows; i++)
+	{
+		if (i + y >= a.rows)break;
+		uchar* adata = a.ptr(i + y);
+		uchar* bdata = b.ptr(i);
+		for (int j = 0; j < b.cols; j++)
+		{
+			int k = j * 4;
+			if (x * 4 + k >= a.cols * 4)break;
+			if (bdata[k + 3] > alpha)
+			{
+				adata[x * 4 + k] = bdata[k];
+				adata[x * 4 + k + 1] = bdata[k + 1];
+				adata[x * 4 + k + 2] = bdata[k + 2];
+				adata[x * 4 + k + 3] = bdata[k + 3];
+			}
+		}
+	}
 }
 
 void CDungeon::DoHandleInput(int input)

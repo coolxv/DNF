@@ -19,6 +19,7 @@ Mat CDungeon_SelectDungeon::s_Mat_DungeonPix_Select[] =
 
 int CDungeon_SelectDungeon::s_PixPos[][2] = { 207,372 ,357,165 };
 int CDungeon_SelectDungeon::s_SelectPixPos[][2] = { 180,376,334,162 };
+
 CDungeon_SelectDungeon::CDungeon_SelectDungeon()
 {
 	m_Quit = false;

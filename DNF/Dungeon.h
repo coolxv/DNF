@@ -33,6 +33,8 @@ protected:
 	bool m_Quit = false; //当前副本是否需要退出，用于Game切换副本
 	bool m_IsClearance; //是否已通过
 	CDungeon* m_NextDungeon=NULL;
-	clock_t m_clock_statr;
+	clock_t m_Clock_Statr;
 	int m_score;
+
+	void _Merge(Mat& a, Mat& b, int x, int y, int alpha);
 };

@@ -31,6 +31,12 @@ private:
 	Mat m_Mat_Hud,m_Mat_Hud_Mask;
 	Mat m_Mat_Hp,m_Mat_Hp_Mask,m_Mat_Hp_w;
 	Mat m_Mat_Mp,m_Mat_Mp_Mask;
+	Mat m_Mat_EffectA, m_Mat_EffectA_Mask, m_Mat_EffectA_Cool, m_Mat_EffectA_Cool_Mask;
+	Mat m_Mat_EffectS, m_Mat_EffectS_Mask, m_Mat_EffectS_Cool, m_Mat_EffectS_Cool_Mask;
+	Mat m_Mat_EffectD, m_Mat_EffectD_Mask, m_Mat_EffectD_Cool, m_Mat_EffectD_Cool_Mask;
+	Mat m_Mat_EffectZ, m_Mat_EffectZ_Mask, m_Mat_EffectZ_Cool, m_Mat_EffectZ_Cool_Mask;
+	Mat m_Mat_EffectMask;
+
 
 	bool m_Hp_onMouse;
 

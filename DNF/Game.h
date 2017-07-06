@@ -2,6 +2,8 @@
 #include "Dungeon.h"
 #include "Dungeon_Home.h"
 #include "Dungeon_SelectDungeon.h"
+#include "Dungeon_Start.h"
+#include "Dungeon_Comics.h"
 #include "OtherObject.h"
 #include "AnimationEffect.h"
 #include "Hud.h"

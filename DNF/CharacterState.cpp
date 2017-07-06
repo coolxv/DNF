@@ -37,7 +37,7 @@ void CharacterWalkintState::DoHandleInput(CCharacter& character, int input)
 		break;
 	case KEY_EFFECTS:
 		character.GetAnimationEffects()->push_back(new CAwakeSEffectAnimation(character.GetOrientation()));
-		character.SetState(&s_UEffecting);
+		character.SetState(&s_SEffecting);
 		break;
 	case KEY_JUMP:
 		character.SetState(&s_Jumping);
@@ -204,8 +204,7 @@ void CharacterStandingState::DoHandleInput(CCharacter & character, int input)
 		character.SetState(&s_NAttacking);
 		break;
 	case KEY_EFFECTS:
-		character.GetAnimationEffects()->push_back(new CAwakeSEffectAnimation(character.GetOrientation()));
-		character.SetState(&s_UEffecting);
+		character.SetState(&s_SEffecting);
 		break;
 	case KEY_JUMP:
 		character.SetState(&s_Jumping);
@@ -218,7 +217,6 @@ void CharacterStandingState::DoHandleInput(CCharacter & character, int input)
 		character.SetState(&s_Effecting);
 		break;
 	case KEY_EFFECTD:
-		character.GetAnimationEffects()->push_back(new CAwakeDEffectAnimation(character.GetOrientation()));
 		character.SetState(&s_DEffecting);
 		break;
 	}
@@ -291,7 +289,7 @@ void CharacterNormalAttackingState::UpdateState(CCharacter & character)
 		//600ms没有按j键之后切换成站立状态
 		character.SetState(&s_Standing);
 	}
-	else if (cur - m_Clock_PreUpdate > character.s_NAttackSpeed)
+	else if (cur - m_Clock_PreUpdate >CHARACTER_ATTACKSPEED)
 	{
 		character.Move(character.GetOrientation(), 1);
 		m_Clock_PreUpdate = cur;
@@ -383,6 +381,14 @@ void CharacterJumpingState::InitState(CCharacter& character)
 	if (character.GetOrientation() != character.GetJumpDir() && (character.GetJumpDir() == DIR_LEFT || character.GetJumpDir() == DIR_RIGHT))
 	{
 		//后跳
+		clock_t cur = clock();
+		if (cur - character.GetPreEffectA() >= COOLDOWN_A)
+			character.SetPreEffectA(cur);
+		else
+		{
+			character.SetState(&s_Standing);
+			return;
+		}
 		character.SetIsBackJumpint(true);
 		m_MatId = 37; //~40
 		m_MatId_Add = 1;
@@ -459,12 +465,12 @@ void CharacterBeAttackState::InitState(CCharacter& character)
 	}
 }
 
-void CharacterUEffectingSttae::DoHandleInput(CCharacter& character, int input)
+void CharacterSEffectingSttae::DoHandleInput(CCharacter& character, int input)
 {
 
 }
 
-void CharacterUEffectingSttae::UpdateState(CCharacter& character)
+void CharacterSEffectingSttae::UpdateState(CCharacter& character)
 {
 	clock_t cur = clock();
 	if (cur - m_Clock_PreUpdate > 100)
@@ -482,18 +488,28 @@ void CharacterUEffectingSttae::UpdateState(CCharacter& character)
 	}
 }
 
-void CharacterUEffectingSttae::InitState(CCharacter& character)
+void CharacterSEffectingSttae::InitState(CCharacter& character)
 {
+	clock_t cur = clock();
+	if (cur - character.GetPreEffectS() >= COOLDOWN_S)
+		character.SetPreEffectS(cur);
+	else
+	{
+		character.SetState(&s_Standing);
+		return;
+	}
+
+	character.GetAnimationEffects()->push_back(new CAwakeSEffectAnimation(character.GetOrientation()));
 	m_MatId = 74;
 	character.SetAttacking(true);
 }
 
-void CharacterEffectingState::DoHandleInput(CCharacter & character, int input)
+void CharacterZEffectingState::DoHandleInput(CCharacter & character, int input)
 {
 
 }
 
-void CharacterEffectingState::UpdateState(CCharacter & character)
+void CharacterZEffectingState::UpdateState(CCharacter & character)
 {
 	clock_t cur = clock();
 	if (cur - m_Clock_PreUpdate > 100)
@@ -509,8 +525,16 @@ void CharacterEffectingState::UpdateState(CCharacter & character)
 	}
 }
 
-void CharacterEffectingState::InitState(CCharacter & character)
+void CharacterZEffectingState::InitState(CCharacter & character)
 {
+	clock_t cur = clock();
+	if (cur - character.GetPreEffectZ() >= COOLDOWN_Z)
+		character.SetPreEffectZ(cur);
+	else
+	{
+		character.SetState(&s_Standing);
+		return;
+	}
 	//64~68
 	m_MatId = 64;
 	character.SetAttacking(true);
@@ -539,6 +563,16 @@ void CharacterDEffectingSttae::UpdateState(CCharacter& character)
 
 void CharacterDEffectingSttae::InitState(CCharacter& character)
 {
+	clock_t cur = clock();
+	if (cur - character.GetPreEffectD() >= COOLDOWN_D)
+		character.SetPreEffectD(cur);
+	else
+	{
+		character.SetState(&s_Standing);
+		return;
+	}
+
+	character.GetAnimationEffects()->push_back(new CAwakeDEffectAnimation(character.GetOrientation()));
 	m_MatId = 121; //121~138
 	character.SetAttacking(true);
 }

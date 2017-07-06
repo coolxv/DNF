@@ -21,7 +21,7 @@ void CDungeon_RollandDeep::Update()
 	if (m_CurStage->IsBossRoom() && m_CurStage->IsClearance() && m_IsClearance == false)
 	{
 		m_IsClearance = true;
-		int ms = clock() - m_clock_statr;
+		int ms = clock() - m_Clock_Statr;
 		int score = m_score - ms;
 		int min = (ms / 60000);
 		ms -= min * 60000;

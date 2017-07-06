@@ -90,6 +90,12 @@
     <ClCompile Include="RollandDeepStage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Dungeon_Start.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon_Comics.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -167,5 +173,14 @@
     <ClInclude Include="RollandDeepStage.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Dungeon_Start.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon_Comics.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Meat" />
   </ItemGroup>
 </Project>

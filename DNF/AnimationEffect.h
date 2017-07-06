@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 class CDungeon;
+
 class CAnimationEffect
 {
 public:

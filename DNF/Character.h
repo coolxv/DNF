@@ -7,6 +7,13 @@
 using namespace cv;
 class CCharacterState;
 class CGame;
+
+/**
+ * @class	CCharacter
+ * @brief 玩家操纵的角色 
+ * 
+ *
+ */
 class CCharacter
 	:public CObjectBase
 {
@@ -18,14 +25,13 @@ public:
 		POINT(int a, int b) :x(a), y(b) {}
 	};
 public:
-	static const int s_NAttackSpeed = CHARACTER_ATTACKSPEED; //攻速
-	static const int s_JumpN = 27;//跳跃力
+	static const int s_JumpN = 27; /**< 跳跃力 */
 	static const int s_Gravity = -1;
 private:
 	CCharacterState* m_State;
-	int m_HP;
-	int m_TotalHp;
-	int m_MP;
+	int m_HP; ///< 血量
+	int m_TotalHp; 
+	int m_MP; /**< 蓝量 */
 	int m_MoveSpeed; //移动速度
 	Mat m_Mat_Body[222], m_Mat_Body_Mask[222];
 	Mat m_Mat_LBody[222], m_Mat_LBody_Mask[222];
@@ -34,13 +40,14 @@ private:
 	int m_ViewWidth, m_ViewHeight, m_OffsetY;
 	bool m_IsAttacking = false;
 	bool m_isBackJumping = false;
+	clock_t m_PreEffect_Z, m_PreEffect_A, m_PreEffect_S, m_PreEffect_D;
 	std::vector<CAnimationEffect*>* m_Vector_AnimationEffects;
 public:
 	CCharacter();
 	~CCharacter();
-	CCharacterState* GetCurState() { return m_State; };
+	CCharacterState* GetCurState();;
 	void SetState(CCharacterState* p);
-	std::vector<CAnimationEffect*>* GetAnimationEffects() { return m_Vector_AnimationEffects; }
+	std::vector<CAnimationEffect*>* GetAnimationEffects();
 	void SetAnimationEffectsVector(std::vector<CAnimationEffect*>* v) { m_Vector_AnimationEffects = v; }
 	void DoRender(Mat& mat,int viewX);
 	void DoHandleInput(int input);
@@ -63,12 +70,17 @@ public://get/set
 	bool GetBackJumping() { return m_isBackJumping; }
 	int GetTotalHp() { return m_TotalHp; };
 	int GetCurEffect(); //获取角色当前使用的技能
+	clock_t GetPreEffectA() { return m_PreEffect_A; }
+	clock_t GetPreEffectS() { return m_PreEffect_S; }
+	clock_t GetPreEffectD() { return m_PreEffect_D; }
+	clock_t GetPreEffectZ() { return m_PreEffect_Z; }
 
+	void SetPreEffectA(clock_t a) { m_PreEffect_A = a; }
+	void SetPreEffectS(clock_t s) { m_PreEffect_S = s; }
+	void SetPreEffectD(clock_t d) { m_PreEffect_D = d; }
+	void SetPreEffectZ(clock_t z) { m_PreEffect_Z = z; }
 	void SetIsBackJumpint(bool is) { m_isBackJumping = is; }
 	void SetAttacking(bool is) { m_IsAttacking = is; };
-	bool SetX(int x) ;
-	bool SetY(int y) ;
-	bool SetZ(int z) ;
 	void SetGravity(int gravity) { m_Gravity = gravity; };
 	void SetZSpeed(int speed) { m_ZSpeed = speed; };
 	void SetMovespeed(int speed) { m_MoveSpeed = speed; };
@@ -76,6 +88,9 @@ public://get/set
 	void SetMoveDirection(int dir);
 	void SetStageWidth(int width) { m_StageWidth = width; }
 	void SetViewSize(int width, int height, int offsety) { m_ViewWidth = width; m_ViewHeight = height; m_OffsetY = offsety; }
+	bool SetX(int x);
+	bool SetY(int y);
+	bool SetZ(int z);
 	void SetHp(int hp);
 };
 

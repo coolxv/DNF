@@ -17,11 +17,22 @@ CCharacter::CCharacter()
 	
 	m_HP = CHARACTER_HP;
 	m_TotalHp = CHARACTER_HP;
+
+	m_PreEffect_A = 0;
+	m_PreEffect_Z = 0;
+	m_PreEffect_S = 0;
+	m_PreEffect_D = 0;
 }
 
 
 CCharacter::~CCharacter()
 {
+}
+
+
+CCharacterState* CCharacter::GetCurState()
+{
+	return m_State;
 }
 
 void CCharacter::SetState(CCharacterState * p)
@@ -31,6 +42,12 @@ void CCharacter::SetState(CCharacterState * p)
 	{
 		m_State->InitState(*this);
 	}
+}
+
+
+std::vector<CAnimationEffect*>* CCharacter::GetAnimationEffects()
+{
+	return m_Vector_AnimationEffects;
 }
 
 void CCharacter::DoRender(Mat& mat, int viewX)

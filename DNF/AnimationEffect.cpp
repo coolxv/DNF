@@ -464,7 +464,6 @@ Mat CResultAnimation::s_Mat_ScoreRank[] =
 	imread("./ImagePacks2/Animation/result/rank/8.png",-1)
 };
 
-
 CResultAnimation::CResultAnimation(int score, int score_rank, int exp, int min, int sec, int lsec
 	, int min_record, int sec_record, int lsec_record, CDungeon* cur_dungeon)
 	:m_Score(score), m_Score_Rank(score_rank), m_Exp(exp), m_Min(min), m_Sec(sec), m_LSec(lsec)
