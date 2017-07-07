@@ -17,10 +17,15 @@ void CHud::Render(Mat& mat)
 	if (m_hp_percentage_animation >= m_hp_percentage_cur+5)
 		__ShowHpAnimation(mat);
 	else
-		__ShowHp(mat, m_Character->GetHp() * 100 / m_Character->GetTotalHp());
+		__ShowHp(mat, m_Character->GetHp() * 100 / CHARACTER_HP);
+
+	if (m_mp_percentage_animation >= m_mp_percentage_cur + 5)
+		__ShowMpAnimation(mat);
+	else
+		__ShowMp(mat, m_Character->GetMp() * 100 / CHARACTER_MP);
 
 	if(m_Hp_onMouse)
-		putText(mat, format("%d/%d", m_Character->GetHp(), m_Character->GetTotalHp()), Point(10, 550), CV_FONT_HERSHEY_PLAIN
+		putText(mat, format("%d/%d", m_Character->GetHp(), CHARACTER_HP), Point(10, 550), CV_FONT_HERSHEY_PLAIN
 			, 0.6, Scalar(255, 255, 255), 1);
 	clock_t cur = clock();
 	//------------------绘制技能栏--------------
@@ -29,9 +34,9 @@ void CHud::Render(Mat& mat)
 	else
 	{
 		double p = (cur*1.0 - m_Character->GetPreEffectZ()) / COOLDOWN_Z;
-		Mat mask = m_Mat_EffectMask.rowRange(0, p * 28);
+		Mat mask = m_Mat_EffectMask.rowRange(0, (int)(p * 28));
 		m_Mat_EffectZ_Cool.copyTo(mat(Rect(378, 503 + 49, m_Mat_EffectZ_Cool.cols, m_Mat_EffectZ_Cool.rows)), m_Mat_EffectZ_Cool_Mask);
-		Mat roi = mat(Rect(378, 503 + 49 + 28 - 28 * p, mask.cols, mask.rows));
+		Mat roi = mat(Rect(378, 503 + 49 + 28 - (int)(28 * p), mask.cols, mask.rows));
 		addWeighted(mask, 0.8, roi, 1, 0, roi);
 	}
 
@@ -40,9 +45,9 @@ void CHud::Render(Mat& mat)
 	else
 	{
 		double p = (cur*1.0 - m_Character->GetPreEffectA()) / COOLDOWN_A;
-		Mat mask = m_Mat_EffectMask.rowRange(0, p * 28);
+		Mat mask = m_Mat_EffectMask.rowRange(0, (int)(p * 28));
 		m_Mat_EffectA_Cool.copyTo(mat(Rect(408, 503 + 49, m_Mat_EffectA_Cool.cols, m_Mat_EffectA_Cool.rows)), m_Mat_EffectA_Cool_Mask);
-		Mat roi = mat(Rect(408, 503 + 49 + 28 - 28 * p, mask.cols, mask.rows));
+		Mat roi = mat(Rect(408, 503 + 49 + 28 - (int)(28 * p), mask.cols, mask.rows));
 		addWeighted(mask, 0.8, roi, 1, 0, roi);
 	}
 
@@ -51,9 +56,9 @@ void CHud::Render(Mat& mat)
 	else
 	{
 		double p = (cur*1.0 - m_Character->GetPreEffectS()) / COOLDOWN_S;
-		Mat mask = m_Mat_EffectMask.rowRange(0, p * 28);
+		Mat mask = m_Mat_EffectMask.rowRange(0, (int)(p * 28));
 		m_Mat_EffectS_Cool.copyTo(mat(Rect(438, 503 + 49, m_Mat_EffectS_Cool.cols, m_Mat_EffectS_Cool.rows)), m_Mat_EffectS_Cool_Mask);
-		Mat roi = mat(Rect(438, 503 + 49 + 28 - 28 * p, mask.cols, mask.rows));
+		Mat roi = mat(Rect(438, 503 + 49 + 28 - (int)(28 * p), mask.cols, mask.rows));
 		addWeighted(mask, 0.8, roi, 1, 0, roi);
 	}
 
@@ -62,9 +67,9 @@ void CHud::Render(Mat& mat)
 	else
 	{
 		double p = (cur*1.0 - m_Character->GetPreEffectD()) / COOLDOWN_D;
-		Mat mask = m_Mat_EffectMask.rowRange(0,p*28);
+		Mat mask = m_Mat_EffectMask.rowRange(0, (int)(p*28));
 		m_Mat_EffectD_Cool.copyTo(mat(Rect(468, 503 + 49, m_Mat_EffectD_Cool.cols, m_Mat_EffectD_Cool.rows)), m_Mat_EffectD_Cool_Mask);
-		Mat roi = mat(Rect(468,503 + 49 +28- 28 * p,mask.cols,mask.rows));
+		Mat roi = mat(Rect(468,503 + 49 +28- (int)(28 * p),mask.cols,mask.rows));
 		addWeighted(mask, 0.8, roi, 1, 0, roi);
 	}
 	//------------------绘制fps--------------
@@ -103,12 +108,40 @@ void CHud::__ShowHpAnimation(Mat& mat)
 }
 
 
+void CHud::__ShowMp(Mat& mat, int mp_percentage)
+{
+	int row = (int)((1 - mp_percentage*1.0 / 100) * m_Mat_Mp.rows);
+	Mat bottom = m_Mat_Mp.rowRange(row, m_Mat_Mp.rows);
+	Mat bottom_ = m_Mat_Mp_Mask.rowRange(row, m_Mat_Mp_Mask.rows);
+	bottom.copyTo(mat(Rect(572, 503 + 14 + row, bottom.cols, bottom.rows)), bottom_);
+}
+
+
+void CHud::__ShowMpAnimation(Mat& mat)
+{
+	int k = 1;
+	int row1 = (100 - (m_mp_percentage_animation))* m_Mat_Mp.rows / 100;
+	int row2 = (100 - m_mp_percentage_cur) * m_Mat_Mp.rows / 100;
+	Mat top = m_Mat_Hp_w.rowRange(row1, row2);
+
+	Mat bottom = m_Mat_Mp.rowRange(row2, m_Mat_Mp.rows);
+	Mat bottom_ = m_Mat_Mp_Mask.rowRange(row2, m_Mat_Mp_Mask.rows);
+	bottom.copyTo(mat(Rect(572, 503 + 14 + row2, bottom.cols, bottom.rows)), bottom_);
+	Mat ROI = mat(Rect(572, 503 + 14 + row1 + k, top.cols, top.rows));
+	addWeighted(top, 1 - (row1*1.0 / row2), ROI, 1, 0, ROI);
+}
+
 void CHud::Update()
 {
-	m_hp_percentage_cur = m_Character->GetHp() * 100 / m_Character->GetTotalHp();
+	m_hp_percentage_cur = m_Character->GetHp() * 100 / CHARACTER_HP;
 	m_hp_percentage_animation -= 1;
 	if (m_hp_percentage_animation < m_hp_percentage_cur)
 		m_hp_percentage_animation = m_hp_percentage_cur;
+
+	m_mp_percentage_cur = m_Character->GetMp() * 100 / CHARACTER_MP;
+	m_mp_percentage_animation -= 1;
+	if (m_mp_percentage_animation < m_mp_percentage_cur)
+		m_mp_percentage_animation = m_mp_percentage_cur;
 }
 
 void CHud::HandleInput(char key)
@@ -166,8 +199,11 @@ void CHud::Initial()
 void CHud::SetCharacter(CCharacter* character)
 {
 	m_Character = character;
-	m_hp_percentage_cur = m_Character->GetHp()*100/ m_Character->GetTotalHp();
+	m_hp_percentage_cur = m_Character->GetHp() * 100 / CHARACTER_HP;
 	m_hp_percentage_animation = m_hp_percentage_cur;
+
+	m_mp_percentage_cur = m_Character->GetMp() * 100 / CHARACTER_MP;
+	m_mp_percentage_animation = m_mp_percentage_cur;
 }
 
 void CHud::__MergeMat(Mat& a, Mat& b, Mat& b_, int div)

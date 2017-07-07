@@ -153,6 +153,7 @@
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="Dungeon_Comics.cpp" />
     <ClCompile Include="Dungeon_Home.cpp" />
+    <ClCompile Include="Dungeon_Maze.cpp" />
     <ClCompile Include="Dungeon_Rolland.cpp" />
     <ClCompile Include="Dungeon_RollandDeep.cpp" />
     <ClCompile Include="Dungeon_SelectDungeon.cpp" />
@@ -170,9 +171,10 @@
     <ClCompile Include="Monster_Tau_State.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
     <ClCompile Include="OtherObject.cpp" />
-    <ClCompile Include="RollandDeepStage.cpp" />
-    <ClCompile Include="RollandStage.cpp" />
+    <ClCompile Include="Stage_RollandDeep.cpp" />
+    <ClCompile Include="Stage_Rolland.cpp" />
     <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="Stage_Maze.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +184,7 @@
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="Dungeon_Comics.h" />
     <ClInclude Include="Dungeon_Home.h" />
+    <ClInclude Include="Dungeon_Maze.h" />
     <ClInclude Include="Dungeon_Rolland.h" />
     <ClInclude Include="Dungeon_RollandDeep.h" />
     <ClInclude Include="Dungeon_SelectDungeon.h" />
@@ -198,9 +201,10 @@
     <ClInclude Include="Monster_Tau_State.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="OtherObject.h" />
-    <ClInclude Include="RollandDeepStage.h" />
-    <ClInclude Include="RollandStage.h" />
+    <ClInclude Include="Stage_RollandDeep.h" />
+    <ClInclude Include="Stage_Rolland.h" />
     <ClInclude Include="Stage.h" />
+    <ClInclude Include="Stage_Maze.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

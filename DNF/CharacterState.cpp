@@ -465,12 +465,12 @@ void CharacterBeAttackState::InitState(CCharacter& character)
 	}
 }
 
-void CharacterSEffectingSttae::DoHandleInput(CCharacter& character, int input)
+void CharacterSEffectingState::DoHandleInput(CCharacter& character, int input)
 {
 
 }
 
-void CharacterSEffectingSttae::UpdateState(CCharacter& character)
+void CharacterSEffectingState::UpdateState(CCharacter& character)
 {
 	clock_t cur = clock();
 	if (cur - m_Clock_PreUpdate > 100)
@@ -488,10 +488,10 @@ void CharacterSEffectingSttae::UpdateState(CCharacter& character)
 	}
 }
 
-void CharacterSEffectingSttae::InitState(CCharacter& character)
+void CharacterSEffectingState::InitState(CCharacter& character)
 {
 	clock_t cur = clock();
-	if (cur - character.GetPreEffectS() >= COOLDOWN_S)
+	if (cur - character.GetPreEffectS() >= COOLDOWN_S && character.GetMp() >= CHARACTER_EFFECT_MP_S) 
 		character.SetPreEffectS(cur);
 	else
 	{
@@ -499,6 +499,7 @@ void CharacterSEffectingSttae::InitState(CCharacter& character)
 		return;
 	}
 
+	character.SetMp(character.GetMp() - CHARACTER_EFFECT_MP_S);
 	character.GetAnimationEffects()->push_back(new CAwakeSEffectAnimation(character.GetOrientation()));
 	m_MatId = 74;
 	character.SetAttacking(true);
@@ -528,7 +529,7 @@ void CharacterZEffectingState::UpdateState(CCharacter & character)
 void CharacterZEffectingState::InitState(CCharacter & character)
 {
 	clock_t cur = clock();
-	if (cur - character.GetPreEffectZ() >= COOLDOWN_Z)
+	if (cur - character.GetPreEffectZ() >= COOLDOWN_Z && character.GetMp() >= CHARACTER_EFFECT_MP_Z)
 		character.SetPreEffectZ(cur);
 	else
 	{
@@ -536,17 +537,18 @@ void CharacterZEffectingState::InitState(CCharacter & character)
 		return;
 	}
 	//64~68
+	character.SetMp(character.GetMp() - CHARACTER_EFFECT_MP_Z);
 	m_MatId = 64;
 	character.SetAttacking(true);
 }
 
 
-void CharacterDEffectingSttae::DoHandleInput(CCharacter& character, int input)
+void CharacterDEffectingState::DoHandleInput(CCharacter& character, int input)
 {
 
 }
 
-void CharacterDEffectingSttae::UpdateState(CCharacter& character)
+void CharacterDEffectingState::UpdateState(CCharacter& character)
 {
 	clock_t cur = clock();
 	if (cur - m_Clock_PreUpdate > 100)
@@ -561,18 +563,39 @@ void CharacterDEffectingSttae::UpdateState(CCharacter& character)
 	}
 }
 
-void CharacterDEffectingSttae::InitState(CCharacter& character)
+void CharacterDEffectingState::InitState(CCharacter& character)
 {
 	clock_t cur = clock();
-	if (cur - character.GetPreEffectD() >= COOLDOWN_D)
+	if (cur - character.GetPreEffectD() >= COOLDOWN_D && character.GetMp()>= CHARACTER_EFFECT_MP_D)
 		character.SetPreEffectD(cur);
 	else
 	{
 		character.SetState(&s_Standing);
 		return;
 	}
-
+	character.SetMp(character.GetMp() - CHARACTER_EFFECT_MP_D);
 	character.GetAnimationEffects()->push_back(new CAwakeDEffectAnimation(character.GetOrientation()));
 	m_MatId = 121; //121~138
 	character.SetAttacking(true);
+}
+
+
+void CharacterDeadState::UpdateState(CCharacter& character)
+{
+	clock_t cur = clock();
+	if (cur - m_Clock_PreUpdate > 150)
+	{
+		m_Clock_PreUpdate = cur;
+		if (m_MatId < 143)
+			m_MatId++;
+	}
+}
+
+void CharacterDeadState::InitState(CCharacter& character)
+{
+	m_MatId = 139;	//139~143
+	m_Clock_PreUpdate = clock();
+
+	character.SetDead(true);
+	character.SetHp(0);
 }

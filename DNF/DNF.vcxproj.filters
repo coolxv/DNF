@@ -45,9 +45,6 @@
     <ClCompile Include="OtherObject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="RollandStage.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Stage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -87,13 +84,22 @@
     <ClCompile Include="Dungeon_RollandDeep.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="RollandDeepStage.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Dungeon_Start.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Dungeon_Comics.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon_Maze.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage_Maze.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage_RollandDeep.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage_Rolland.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -129,9 +135,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="OtherObject.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="RollandStage.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Stage.h">
@@ -170,13 +173,22 @@
     <ClInclude Include="Dungeon_RollandDeep.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="RollandDeepStage.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Dungeon_Start.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Dungeon_Comics.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon_Maze.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage_Maze.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage_RollandDeep.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage_Rolland.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

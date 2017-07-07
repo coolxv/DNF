@@ -5,15 +5,16 @@ using namespace cv;
 
 class COtherObject;
 class CMonster;
+struct NEXT_STAGE
+{
+	CStage* top, *bottom, *left, *right;
+	NEXT_STAGE() :top(NULL), bottom(NULL), left(NULL), right(NULL) {}
+	NEXT_STAGE(CStage* t, CStage* b, CStage* l, CStage* r) :top(t), bottom(b), left(l), right(r) {}
+};
+
 class CStage
 {
 public:
-	struct NEXT_STAGE
-	{
-		CStage* top, *bottom, *left, *right;
-		NEXT_STAGE() :top(NULL), bottom(NULL), left(NULL), right(NULL) {}
-		NEXT_STAGE(CStage* t, CStage* b, CStage* l, CStage* r) :top(t), bottom(b), left(l), right(r) {}
-	};
 	static Mat s_Mat_Monster_Hphud, s_Mat_Monster_Hphud_, s_Mat_Monster_Hp[5], s_Mat_Monster_Hp_Mask[5];
 	static Mat s_Mat_BossMonster_Hphud, s_Mat_BossMonster_Hphud_, s_Mat_BossMonster_Hp[5], s_Mat_BossMonster_Hp_Mask[5];
 	static Mat s_Mat_HpNumber[11];
@@ -23,11 +24,11 @@ public:
 	static const int s_ViewWidth = 640;
 public:
 	virtual void InitStage() {};  //由子类覆盖 ,进行资源的初始化和物体的载入 每次进入该场景需要调用一次
-	virtual void QuitStage() {}; //离开当前调用，用于释放资源
+	virtual void QuitStage() ; //离开当前调用，用于释放资源
 	CStage() ;
 	virtual ~CStage() {};
-	void Render(Mat& mat);
 	void HandleInput(int input);
+	virtual void Render(Mat& mat);
 	virtual void Update(CDungeon* dungeon); 
 
 	int GetViewX() { return m_ViewX; };

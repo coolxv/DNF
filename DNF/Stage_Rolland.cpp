@@ -1,21 +1,14 @@
-#include "RollandStage.h"
+#include "Stage_Rolland.h"
 #include "OtherObject.h"
 #include "Monster_Goblin.h"
 #include "Monster_BossGoblin.h"
 #include "Monster_Tau.h"
 
-int CRollandStage::RollandStageWidths[] = {1280,640,1280,1280,640,1280};
+int CStage_Rolland::RollandStageWidths[] = {1280,640,1280,1280,640,1280};
 
-void CRollandStage::QuitStage()
-{
-	for (auto it = m_OtherObjects.begin(); it != m_OtherObjects.end(); it++)
-	{
-		delete *it;
-	}
-	m_OtherObjects.clear();
-}
 
-CRollandStage::CRollandStage()
+
+CStage_Rolland::CStage_Rolland()
 {
 	m_mat_MidBG = imread("./ImagePacks2/Map/0/01mid1.png", -1);
 	m_mat_MidBG_Mask = imread("./ImagePacks2/Map/0/01mid1.png", 0);

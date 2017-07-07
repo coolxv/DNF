@@ -16,8 +16,9 @@
 #include<iostream>
 #include<vector>
 #include<time.h>
+#include<algorithm>
 #define INF 0x4fffffff
-#define RANDNUM(a,b)  (rand() % (b - a+1) + a); 
+#define RANDNUM(a,b)  (rand() % (b - a+1) + a)
 
 #define KEY_MOVE_RIGHT 0x27
 #define KEY_MOVE_LEFT 0x25	
@@ -55,6 +56,7 @@
 #define MONSTER_TAU_ARMOR 600
 
 #define CHARACTER_HP 40000
+#define CHARACTER_MP 1000
 #define CHARACTER_ATTACKPOWER 2000
 #define CHARACTER_ATTACKPOWER_ 2400 //¹¥»÷Á¦·¶Î§2000~2200
 #define CHARACTER_ARMOR 300
@@ -66,11 +68,17 @@
 #define COOLDOWN_S 5000
 #define COOLDOWN_D 8000
 
-#define CHARACTER_EFFECT_POWER_J 1
-#define CHARACTER_EFFECT_POWER_H 1.5
-#define CHARACTER_EFFECT_POWER_U1 2
-#define CHARACTER_EFFECT_POWER_U2 2.5
+#define CHARACTER_EFFECT_MP_Z 80
+#define CHARACTER_EFFECT_MP_S 150
+#define CHARACTER_EFFECT_MP_D 200
+
+#define CHARACTER_EFFECT_POWER_X 1
+#define CHARACTER_EFFECT_POWER_Z 1.5
+#define CHARACTER_EFFECT_POWER_S1 2
+#define CHARACTER_EFFECT_POWER_S2 2.5
 #define CHARACTER_EFFECT_POWER_D 10
+
+#define MAZE_SIZE 20
 using namespace cv;
 
 

@@ -86,16 +86,18 @@ void CGame::Render()
 
 CGame::CGame()
 {
+
+	srand(unsigned(time(NULL)));
 	m_GameState = GAMESTATE_HOME;
 	InitRec();
-
 	m_Character = new CCharacter();
 	m_Character->SetAnimationEffectsVector(&m_AnimationEffects);
 
-	//m_CurDungeon = new Dungeon_Rolland();
-	//m_CurDungeon = new CDungeon_Home();
-	m_CurDungeon = new CDungeon_Start();
+	//m_CurDungeon = new CDungeon_Rolland();
+	m_CurDungeon = new CDungeon_Home();
+	//m_CurDungeon = new CDungeon_Start();
 	//m_CurDungeon = new CDungeon_Comics();
+	//m_CurDungeon = new CDungeon_Maze();
 	m_CurDungeon->SetCharacter(m_Character);
 	m_CurDungeon->DoInitDungeon();
 

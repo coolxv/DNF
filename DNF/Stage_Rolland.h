@@ -2,24 +2,23 @@
 #include "Stage.h"
 
 class Gate;
-class CRollandStage :
+class CStage_Rolland :
 	public CStage
 {
 public:
 	static int RollandStageWidths[6];
 public:
 	virtual void InitStage() {};
-	void QuitStage();
 
-	CRollandStage();
-	~CRollandStage() {}; //stage的析构函数已经是 virtual的了
+	CStage_Rolland();
+	~CStage_Rolland() {}; //stage的析构函数已经是 virtual的了
 
 	clock_t m_Clock_GateTimer; //用来实现延时进门，-1表示当前不在门附近
 	Gate* m_LeftGate, *m_RightGate, *m_TopGate, *m_BottomGate;
 };
 
 class RollandStage0 :
-	public CRollandStage
+	public CStage_Rolland
 {
 public:
 	void InitStage();
@@ -29,7 +28,7 @@ public:
 };
 
 class RollandStage1 :
-	public CRollandStage
+	public CStage_Rolland
 {
 public:
 	void InitStage();
@@ -40,7 +39,7 @@ public:
 
 
 class RollandStage2 :
-	public CRollandStage
+	public CStage_Rolland
 {
 public:
 	void InitStage();
@@ -52,7 +51,7 @@ public:
 
 
 class RollandStage3 :
-	public CRollandStage
+	public CStage_Rolland
 {
 public:
 	void InitStage();
@@ -63,7 +62,7 @@ public:
 
 
 class RollandStage4 :
-	public CRollandStage
+	public CStage_Rolland
 {
 public:
 	void InitStage();
@@ -74,7 +73,7 @@ public:
 
 
 class RollandStage5 :
-	public CRollandStage
+	public CStage_Rolland
 {
 public:
 	void InitStage();

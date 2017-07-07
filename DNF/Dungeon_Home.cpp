@@ -1,5 +1,6 @@
 #include "Dungeon_Home.h"
 #include "Dungeon_SelectDungeon.h"
+#include "CharacterState.h"
 
 
 
@@ -35,7 +36,6 @@ Mat CDungeon_Home::s_Mat_Seria_Mask[] =
 };
 CDungeon_Home::CDungeon_Home()
 {
-
 	m_Quit = false;
 	m_NextDungeon = NULL;
 }

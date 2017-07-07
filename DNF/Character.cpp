@@ -11,12 +11,17 @@ CCharacter::CCharacter()
 	m_MoveDirection = DIR_NONE;
 	m_MoveSpeed = CHARACTER_MOVESPEED;
 	m_JumpDir = DIR_NONE;	
+	m_isBackJumping = false;
+	m_IsAttacking = false;
+	m_Dead = false;
 	m_Thick = 25;
 	m_Width = 35;
 	m_Height = 115;
 	
 	m_HP = CHARACTER_HP;
-	m_TotalHp = CHARACTER_HP;
+	m_MP = CHARACTER_MP;
+
+	m_PreReplyHpMp = 0;
 
 	m_PreEffect_A = 0;
 	m_PreEffect_Z = 0;
@@ -37,9 +42,13 @@ CCharacterState* CCharacter::GetCurState()
 
 void CCharacter::SetState(CCharacterState * p)
 {
-	m_State = p;
-	if (p)
+	if (m_Dead && typeid(*p) != typeid(CharacterStandingState))
 	{
+		return;
+	}
+	else if (p)
+	{
+		m_State = p;
 		m_State->InitState(*this);
 	}
 }
@@ -69,7 +78,13 @@ void CCharacter::DoHandleInput(int input)
 
 void CCharacter::UpdateState()
 {
-
+	clock_t cur = clock();
+	if (cur - m_PreReplyHpMp >= 5000 && m_Dead==false)
+	{
+		SetHp(m_HP+ CHARACTER_HP * 5 / 100);
+		SetMp(m_MP + CHARACTER_MP * 5 / 100);
+		m_PreReplyHpMp = cur;
+	}
 	//----------------------÷ÿ¡¶-----------------------
 	if (m_Gravity != 0)
 	{
@@ -117,15 +132,15 @@ int CCharacter::GetDamage(int type,bool& crit)
 	switch (type)
 	{
 	case EFFECTX:
-		p = CHARACTER_EFFECT_POWER_J;
+		p = CHARACTER_EFFECT_POWER_X;
 		break;
 	case EFFECTZ:
-		p = CHARACTER_EFFECT_POWER_H;
+		p = CHARACTER_EFFECT_POWER_Z;
 		break;
 	case EFFECTS:
-		p = CHARACTER_EFFECT_POWER_U1;
+		p = CHARACTER_EFFECT_POWER_S1;
 	case EFFECTS2:
-		p = CHARACTER_EFFECT_POWER_U2;
+		p = CHARACTER_EFFECT_POWER_S2;
 		break;
 	}
 	if (GetRandNum(1, 100) < CHARACTER_CRIT) //±©ª˜
@@ -221,11 +236,24 @@ void CCharacter::SetMoveDirection(int dir)
 void CCharacter::SetHp(int hp)
 {
 	if (hp <= 0)
-		m_HP = m_TotalHp;
-	else if (hp>m_TotalHp)
-		m_HP = m_TotalHp;
+	{
+		SetState(&s_Dead);
+	}
+	else if (hp>CHARACTER_HP)
+		m_HP = CHARACTER_HP;
 	else
 		m_HP = hp;
+}
+
+
+void CCharacter::SetMp(int mp)
+{
+	if (mp <= 0)
+		m_MP = CHARACTER_MP;
+	else if (mp > CHARACTER_MP)
+		m_MP = CHARACTER_MP;
+	else
+		m_MP = mp;
 }
 
 void CCharacter::__InitRec()

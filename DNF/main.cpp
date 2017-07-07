@@ -6,6 +6,7 @@
 #include <opencv2/opencv.hpp>
 #include "Game.h"
 #include "OtherObject.h"
+#include "stdafx.h"
 using namespace cv;
 CGame game;
 
@@ -15,7 +16,6 @@ void onMouse(int Event, int x, int y, int flags, void* param)
 }
 int main()
 {
-	srand(unsigned(time(0)));
 	cvNamedWindow("DNF");
 	cvSetMouseCallback("DNF", &onMouse, NULL);
 	game.Run();

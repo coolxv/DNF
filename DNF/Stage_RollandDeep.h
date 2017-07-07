@@ -2,16 +2,15 @@
 #include "Stage.h"
 
 class Gate;
-class CRollandDeepStage :
+class CStage_RollandDeep :
 	public CStage
 {
 public:
 	static int RollandDeepStageWidths[7];
-	CRollandDeepStage();
-	~CRollandDeepStage();
+	CStage_RollandDeep();
+	~CStage_RollandDeep();
 
 	virtual void InitStage() {};
-	void QuitStage(); 
 	
 protected:
 	Gate* _CreatGate(int dir);
@@ -20,7 +19,7 @@ protected:
 };
 
 class RollandDeepStage0 :
-	public CRollandDeepStage
+	public CStage_RollandDeep
 {
 public:
 	void InitStage();
@@ -30,7 +29,7 @@ public:
 };
 
 class RollandDeepStage1 :
-	public CRollandDeepStage
+	public CStage_RollandDeep
 {
 public:
 	void InitStage();
@@ -40,7 +39,7 @@ public:
 };
 
 class RollandDeepStage2 :
-	public CRollandDeepStage
+	public CStage_RollandDeep
 {
 public:
 	void InitStage();
@@ -50,7 +49,7 @@ public:
 };
 
 class RollandDeepStage3 :
-	public CRollandDeepStage
+	public CStage_RollandDeep
 {
 public:
 	void InitStage();
@@ -60,7 +59,7 @@ public:
 };
 
 class RollandDeepStage4 :
-	public CRollandDeepStage
+	public CStage_RollandDeep
 {
 public:
 	void InitStage();
@@ -70,7 +69,7 @@ public:
 };
 
 class RollandDeepStage5 :
-	public CRollandDeepStage
+	public CStage_RollandDeep
 {
 public:
 	void InitStage();
@@ -80,7 +79,7 @@ public:
 };
 
 class RollandDeepStage6 :
-	public CRollandDeepStage
+	public CStage_RollandDeep
 {
 public:
 	void InitStage();

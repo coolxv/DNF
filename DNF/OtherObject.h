@@ -50,10 +50,6 @@ public:
 	int m_MatId; //ÉÁË¸Ð§¹û
 };
 
-
-
-
-
 class Tree :
 	public COtherObject
 {
@@ -90,7 +86,14 @@ private:
 	int m_Dir;
 };
 
-
+struct _Meat
+{
+	Point3i Pos;
+	Point3i Speed;
+	int Type;
+	_Meat() {}
+	_Meat(Point3i p, Point3i sp, int t) :Pos(p), Speed(sp), Type(t) {}
+};
 
 class Meat
 	:public COtherObject
@@ -102,14 +105,6 @@ public:
 
 	void DoRender(Mat& mat, int viewX);
 private:
-	struct _Meat
-	{
-		Point3i Pos;
-		Point3i Speed;
-		int Type;
-		_Meat() {}
-		_Meat(Point3i p ,Point3i sp, int t) :Pos(p),Speed(sp), Type(t) {}
-	};
 	std::vector<_Meat> m_Meats;
 	int m_MeatType;
 	clock_t m_Clock_PreUpdate;

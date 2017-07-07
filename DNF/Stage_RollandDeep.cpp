@@ -1,4 +1,4 @@
-#include "RollandDeepStage.h"
+#include "Stage_RollandDeep.h"
 #include "OtherObject.h"
 #include "Monster.h"
 #include "Monster_BossGoblin.h"
@@ -6,8 +6,8 @@
 #include "Monster_Tau.h"
 
 
-int CRollandDeepStage::RollandDeepStageWidths[] = { 1280,640,1280,1280,1280,640,1280 };
-CRollandDeepStage::CRollandDeepStage()
+int CStage_RollandDeep::RollandDeepStageWidths[] = { 1280,640,1280,1280,1280,640,1280 };
+CStage_RollandDeep::CStage_RollandDeep()
 {
 	m_mat_MidBG = imread("./ImagePacks2/Map/1/01mid1.png", -1);
 	m_mat_MidBG_Mask = imread("./ImagePacks2/Map/1/01mid1.png", 0);
@@ -22,25 +22,13 @@ CRollandDeepStage::CRollandDeepStage()
 }
 
 
-CRollandDeepStage::~CRollandDeepStage()
+CStage_RollandDeep::~CStage_RollandDeep()
 {
 }
 
-void CRollandDeepStage::QuitStage()
-{
-	for (auto it = m_OtherObjects.begin(); it != m_OtherObjects.end(); it++)
-	{
-		delete *it;
-	}
-	m_OtherObjects.clear();
-}
 
-Gate* CRollandDeepStage::_CreatGate(int dir)
+Gate* CStage_RollandDeep::_CreatGate(int dir)
 {
-	//new Gate(Gate::TOP_GATE, m_StageWidth / 2-86,5 , this);
-	//new Gate(Gate::BOTTOM_GATE, m_StageWidth / 2 - 86, s_ViewHeight - 1, this);
-	//new Gate(Gate::LEFT_GATE, -45, 100, this);
-	//new Gate(Gate::RIGHT_GATE, m_StageWidth - 100, 100, this);
 	switch (dir)
 	{
 	case DIR_UP:

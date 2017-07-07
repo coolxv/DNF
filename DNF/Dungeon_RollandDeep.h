@@ -7,8 +7,9 @@ public:
 	CDungeon_RollandDeep();
 	~CDungeon_RollandDeep();
 
-	void Update();
 	void DoInitDungeon();
 
+
+	void DoRender(Mat& mat);
 };
 

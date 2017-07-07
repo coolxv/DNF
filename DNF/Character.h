@@ -17,20 +17,15 @@ class CGame;
 class CCharacter
 	:public CObjectBase
 {
-public:
+private:
 	struct POINT
 	{
 		int x, y;
-		POINT():x(0),y(0) {}
+		POINT() :x(0), y(0) {}
 		POINT(int a, int b) :x(a), y(b) {}
 	};
-public:
-	static const int s_JumpN = 27; /**< 跳跃力 */
-	static const int s_Gravity = -1;
-private:
 	CCharacterState* m_State;
 	int m_HP; ///< 血量
-	int m_TotalHp; 
 	int m_MP; /**< 蓝量 */
 	int m_MoveSpeed; //移动速度
 	Mat m_Mat_Body[222], m_Mat_Body_Mask[222];
@@ -38,9 +33,11 @@ private:
 	POINT m_Offset_LeftBottom[223], m_Offset_LeftBottom_Left[223]; //角色对应图片左下角偏移
 	int m_StageWidth;  //当前所在场景的最大宽度	
 	int m_ViewWidth, m_ViewHeight, m_OffsetY;
-	bool m_IsAttacking = false;
-	bool m_isBackJumping = false;
+	bool m_IsAttacking;
+	bool m_isBackJumping;
+	bool m_Dead;
 	clock_t m_PreEffect_Z, m_PreEffect_A, m_PreEffect_S, m_PreEffect_D;
+	clock_t m_PreReplyHpMp;
 	std::vector<CAnimationEffect*>* m_Vector_AnimationEffects;
 public:
 	CCharacter();
@@ -55,10 +52,14 @@ public:
 	void Move(int dir, double multiple = 1.0);
 	int GetDamage(int effect, bool& crit);
 	int GetArmor();
+	static const int s_JumpN = 27; /**< 跳跃力 */
+	static const int s_Gravity = -1;
 private:
 	void __InitRec();
 public://get/set
+	bool GetDead() { return m_Dead; }
 	int GetHp() { return m_HP; };
+	int GetMp() { return m_MP; }
 	int GetGravity() { return m_Gravity; };
 	int GetZSpeed() { return m_ZSpeed; };
 	int GetOrientation() { return m_Orientation; };
@@ -68,7 +69,6 @@ public://get/set
 	Rect GetAttackRect();
 	bool GetAttacking() { return m_IsAttacking; };
 	bool GetBackJumping() { return m_isBackJumping; }
-	int GetTotalHp() { return m_TotalHp; };
 	int GetCurEffect(); //获取角色当前使用的技能
 	clock_t GetPreEffectA() { return m_PreEffect_A; }
 	clock_t GetPreEffectS() { return m_PreEffect_S; }
@@ -88,9 +88,11 @@ public://get/set
 	void SetMoveDirection(int dir);
 	void SetStageWidth(int width) { m_StageWidth = width; }
 	void SetViewSize(int width, int height, int offsety) { m_ViewWidth = width; m_ViewHeight = height; m_OffsetY = offsety; }
+	void SetDead(bool is) { m_Dead = is; }
 	bool SetX(int x);
 	bool SetY(int y);
 	bool SetZ(int z);
 	void SetHp(int hp);
+	void SetMp(int mp);
 };
 

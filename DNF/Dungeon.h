@@ -10,8 +10,8 @@ public:
 	virtual ~CDungeon();
 
 	virtual void DoHandleInput(int input);
-	virtual void Update() {};
-	virtual void DoRender(Mat& mat);
+	virtual void Update();
+	virtual void DoRender(Mat& mat) {};
 	virtual void DoInitDungeon() {};
 	virtual void HandleMouse(int Event, int x, int y, int flags, void* param) {};
 	virtual int GetViewX();
@@ -35,6 +35,7 @@ protected:
 	CDungeon* m_NextDungeon=NULL;
 	clock_t m_Clock_Statr;
 	int m_score;
+	bool m_GameOver;
 
 	void _Merge(Mat& a, Mat& b, int x, int y, int alpha);
 };

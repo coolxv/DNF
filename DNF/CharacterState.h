@@ -105,7 +105,7 @@ public:
 	void InitState(CCharacter& character);
 };
 
-class CharacterSEffectingSttae
+class CharacterSEffectingState
 	:public CCharacterState
 {
 public:
@@ -115,7 +115,7 @@ public:
 
 };
 
-class CharacterDEffectingSttae
+class CharacterDEffectingState
 	:public CCharacterState
 {
 public:
@@ -123,6 +123,14 @@ public:
 	void UpdateState(CCharacter& character);
 	void InitState(CCharacter& character);
 
+};
+
+class CharacterDeadState
+	:public CCharacterState
+{
+public:
+	void UpdateState(CCharacter& character);
+	void InitState(CCharacter& character);
 };
 
 static CharacterRunningState s_Running;
@@ -132,5 +140,6 @@ static CharacterNormalAttackingState s_NAttacking;
 static CharacterJumpingState s_Jumping;
 static CharacterZEffectingState s_Effecting;
 static CharacterBeAttackState s_BeAttacked;
-static CharacterSEffectingSttae s_SEffecting;
-static CharacterDEffectingSttae s_DEffecting;
+static CharacterSEffectingState s_SEffecting;
+static CharacterDEffectingState s_DEffecting;
+static CharacterDeadState s_Dead;

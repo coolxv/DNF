@@ -1,5 +1,6 @@
 #include "AnimationEffect.h"
 #include "Stage.h"
+#include "CharacterState.h"
 #include "Dungeon.h"
 #include "Dungeon_Home.h"
 #include "Dungeon_SelectDungeon.h"
@@ -500,12 +501,12 @@ void CResultAnimation::DoRender(Mat& bg, int viewX)
 	{
 		cur -= 3000;
 		//+ (cur*1.0 / 500)*(bg.cols - 456)
-		__Merge(bg, s_Mat_score_text1, 456 + (cur*1.0 / 500)*(bg.cols - 456), 65, 100);
-		__Merge(bg, s_Mat_score_text2, 390 + (cur*1.0 / 500)*(bg.cols - 390), 140, 50);
-		__Merge(bg, s_Mat_score_text3, 390 + (cur*1.0 / 500)*(bg.cols - 390), 310, 50);
-		__Merge(bg, s_Mat_time_text, 390 + (cur*1.0 / 500)*(bg.cols - 390), 348, 50);
-		__Merge(bg, s_Mat_ScoreRank[m_Score_Rank], 416 + (cur*1.0 / 500)*(bg.cols - 416), 160, 50);
-		__Merge(bg, s_Mat_exp_text, 408 + (cur*1.0 / 500)*(bg.cols - 408), 432, 200);
+		__Merge(bg, s_Mat_score_text1, 456 + (int)((cur*1.0 / 500)*(bg.cols - 456)), 65, 100);
+		__Merge(bg, s_Mat_score_text2, 390 + (int)((cur*1.0 / 500)*(bg.cols - 390)), 140, 50);
+		__Merge(bg, s_Mat_score_text3, 390 + (int)((cur*1.0 / 500)*(bg.cols - 390)), 310, 50);
+		__Merge(bg, s_Mat_time_text, 390 + (int)((cur*1.0 / 500)*(bg.cols - 390)), 348, 50);
+		__Merge(bg, s_Mat_ScoreRank[m_Score_Rank], 416 + (int)((cur*1.0 / 500)*(bg.cols - 416)), 160, 50);
+		__Merge(bg, s_Mat_exp_text, 408 + (int)((cur*1.0 / 500)*(bg.cols - 408)), 432, 200);
 	}
 	else
 	{
@@ -730,4 +731,34 @@ void CResultAnimation::__Merge(Mat& a, Mat& b, int x, int y, int h)
 			}
 		}
 	}
+}
+
+CGameOverAnimation::CGameOverAnimation(CDungeon* dungeon)
+	:m_Dungeon(dungeon)
+{
+	m_AnimationStart = clock();
+
+	for (int i = 0; i < 10; i++)
+	{
+		m_Mat_Number[i] = imread(format("./ImagePacks2/Animation/dead/%d.png",i), -1);
+		m_Mat_Number_Mask[i] = imread(format("./ImagePacks2/Animation/dead/%d.png",i), 0);
+	}
+}
+
+void CGameOverAnimation::DoRender(Mat& mat, int viewX)
+{
+	clock_t cur = clock() - m_AnimationStart;
+	if (cur >= 11000)
+	{
+		m_Complete = true;
+		m_Dungeon->SetQuit(true);
+		m_Dungeon->SetNextDungeon(new CDungeon_Home());
+		m_Dungeon->GetCurStage()->GetCharacter()->SetState(&s_Standing);
+		m_Dungeon->GetCurStage()->GetCharacter()->SetDead(false); 
+		m_Dungeon->GetCurStage()->GetCharacter()->SetHp(CHARACTER_HP);
+		return;
+	}
+	int sec = 9 - cur / 1000;
+	if (sec < 0)sec = 0;
+	m_Mat_Number[sec].copyTo(mat(Rect(286,265, 111,88)), m_Mat_Number_Mask[sec]);
 }

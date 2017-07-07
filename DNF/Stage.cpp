@@ -54,6 +54,15 @@ Mat CStage::s_Mat_HpNumber[11] =
 	imread("./ImagePacks2/Animation/number3/10.png", -1)
 };
 
+void CStage::QuitStage()
+{
+	for (auto it = m_OtherObjects.begin(); it != m_OtherObjects.end(); it++)
+	{
+		delete (*it);
+	}
+	m_OtherObjects.clear();
+}
+
 CStage::CStage()
 {
 	m_TargetMonster = NULL;

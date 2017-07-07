@@ -113,3 +113,18 @@ private:
 	CDungeon* m_CurDungeon;
 	clock_t m_StartTime;
 };
+
+
+class CGameOverAnimation
+	:public CAnimationEffect
+{
+
+public:
+	CGameOverAnimation(CDungeon* dungeon);
+	~CGameOverAnimation() {};
+	void DoRender(Mat& mat, int viewX);
+private:
+	Mat m_Mat_Number[10],m_Mat_Number_Mask[10];
+	clock_t m_AnimationStart;
+	CDungeon* m_Dungeon;
+};

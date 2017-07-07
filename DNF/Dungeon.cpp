@@ -1,5 +1,5 @@
 #include "Dungeon.h"
-#include "RollandStage.h"
+#include "Stage_Rolland.h"
 #include "Monster.h"
 #include "Monster_State.h"
 #include "CharacterState.h"
@@ -8,8 +8,11 @@
 CDungeon::CDungeon()
 {
 	m_Clock_Statr = clock();
+	m_GameOver = false;
 	m_score = 0;
 	m_IsClearance = false;
+	if(m_Character)
+		m_Character->SetState(&s_Standing);
 }
 
 
@@ -64,8 +67,28 @@ void CDungeon::DoHandleInput(int input)
 	//mCharacter->handleInput(input);
 }
 
-
-void CDungeon::DoRender(Mat & mat)
+void CDungeon::Update()
 {
-	m_CurStage->Render(mat);
+	if(!m_GameOver)
+		m_CurStage->Update(this);
+	m_Character->UpdateState();
+	if (m_CurStage->IsBossRoom() && m_CurStage->IsClearance() && m_IsClearance == false)
+	{
+		m_IsClearance = true;
+		int ms = clock() - m_Clock_Statr;
+		int score = m_score - ms;
+		int min = (ms / 60000);
+		ms -= min * 60000;
+		int sec = ms / 1000;
+		ms -= sec * 1000;
+		int lsec = ms * 60 / 1000;
+		m_Character->GetAnimationEffects()->push_back(
+			new CResultAnimation(score >= 0 ? score :RANDNUM(0,8), RANDNUM(10000,100000), 
+				score, min, sec, lsec, min, sec, lsec, this));
+	}
+	if (m_Character->GetDead()&& !m_GameOver)
+	{
+		m_GameOver = true;
+		m_Character->GetAnimationEffects()->push_back(new CGameOverAnimation(this));
+	}
 }
