@@ -66,7 +66,7 @@ void CDungeon::_Merge(Mat& a, Mat& b, int x, int y, int alpha)
 
 void CDungeon::DoHandleInput(int input)
 {
-	if (input == 'B')
+	if (input == 'B' && !m_Character->GetDead())
 	{
 		m_Quit = true;
 		m_NextDungeon = new CDungeon_Home();

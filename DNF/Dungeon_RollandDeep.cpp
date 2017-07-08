@@ -16,6 +16,7 @@ CDungeon_RollandDeep::~CDungeon_RollandDeep()
 
 void CDungeon_RollandDeep::DoInitDungeon()
 {
+	PlaySound(TEXT("./ImagePacks2/Music/forest01_new.wav"), NULL, SND_FILENAME | SND_ASYNC| SND_LOOP);
 	//初始化副本场景
 	CStage* p = new RollandDeepStage0();
 	p->SetCharacter(m_Character);

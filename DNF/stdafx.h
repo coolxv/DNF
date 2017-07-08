@@ -6,7 +6,8 @@
 #pragma once
 
 #include "targetver.h"
-
+#include "windows.h"
+#include "mmsystem.h"
 #include <stdio.h>
 #include <tchar.h>
 #include<opencv2/core/core.hpp>
@@ -17,6 +18,7 @@
 #include<vector>
 #include<time.h>
 #include<algorithm>
+#pragma comment(lib,"winmm.lib")
 #define INF 0x4fffffff
 #define RANDNUM(a,b)  (rand() % (b - a+1) + a)
 
@@ -76,7 +78,7 @@
 #define CHARACTER_EFFECT_POWER_Z 1.5
 #define CHARACTER_EFFECT_POWER_S1 2
 #define CHARACTER_EFFECT_POWER_S2 2.5
-#define CHARACTER_EFFECT_POWER_D 10
+#define CHARACTER_EFFECT_POWER_D 2.5
 
 #define MAZE_SIZE 15
 using namespace cv;

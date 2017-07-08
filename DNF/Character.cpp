@@ -146,6 +146,8 @@ int CCharacter::GetDamage(int type,bool& crit)
 		p = CHARACTER_EFFECT_POWER_S1;
 	case EFFECTS2:
 		p = CHARACTER_EFFECT_POWER_S2;
+	case EFFECTD:
+		p = CHARACTER_EFFECT_POWER_D;
 		break;
 	}
 	if (GetRandNum(1, 100) < CHARACTER_CRIT) //±©»÷

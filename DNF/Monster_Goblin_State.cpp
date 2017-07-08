@@ -18,7 +18,7 @@ void CMonster_Goblin_StandingState::Update()
 	//±»¹¥»÷
 	if ((MonsterBodyRect&AttackRect).area() != 0 && character->GetAttacking())
 		m_Monster->SetState(new CMonster_Goblin_BeAttackedState(m_Monster));
-	else if (cur - m_Clock_PreUpdate > CObjectBase::GetRandNum(500, 1000) )
+	else if (cur - m_Clock_PreUpdate > CObjectBase::GetRandNum(m_Monster->GetAttackFrequency(), m_Monster->GetAttackFrequency()+1000) )
 	{
 		m_Monster->SetState(new CMonster_Goblin_RunningState(m_Monster));
 	}
@@ -81,8 +81,14 @@ void CMonster_Goblin_RunningState::Update()
 			}
 			else
 			{
-				m_Monster->SetState(new CMonster_Goblin_AttackingState(m_Monster));
-				//m_Monster->SetState(new CMonster_Goblin_StandingState(m_Monster));
+				if (RANDNUM(1,10)<8)
+				{
+					m_Monster->SetState(new CMonster_Goblin_AttackingState(m_Monster));
+				}
+				else
+				{
+					m_Monster->SetState(new CMonster_Goblin_StandingState(m_Monster));
+				}
 			}
 			m_Clock_PreUpdate = cur;
 			m_MatId++;

@@ -19,6 +19,7 @@ int main()
 {
 	cvNamedWindow("DNF");
 	cvSetMouseCallback("DNF", &onMouse, NULL);
+	PlaySound(TEXT("./ImagePacks2/Music/login.wav"), NULL, SND_FILENAME | SND_ASYNC| SND_LOOP);
 	game.Run();
 	return 0;
 }

@@ -131,6 +131,7 @@ CGame::~CGame()
 	m_AnimationEffects.clear();
 }
 
+
 void CGame::Run()
 {
 	clock_t nextFrameTime = clock();
@@ -138,13 +139,13 @@ void CGame::Run()
 	m_IsRunning = true;
 	while (m_IsRunning)
 	{
-		HandleInput();
-		Update();
-		Render();
+		HandleInput();	//处理键盘输入
+		Update();			//更新游戏状态
+		Render();			//绘制游戏画面
 		nextFrameTime += FRAMES_TIME;
 		currentFrameTime = clock();
-		//waitKey(1);
 		if (nextFrameTime > currentFrameTime)
 			waitKey(nextFrameTime - currentFrameTime);
 	}
+	PlaySound(NULL, NULL, NULL);
 }

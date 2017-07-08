@@ -9,7 +9,7 @@
 #include "OtherObject.h"
 #include "AnimationEffect.h"
 #include "Hud.h"
-#define FRAMES_PER_SECOND  100
+#define FRAMES_PER_SECOND  70
 #define FRAMES_TIME ( 1000 / FRAMES_PER_SECOND )
 
 /**

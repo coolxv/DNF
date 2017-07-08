@@ -200,7 +200,7 @@ bool Gate::Update(CStage& stage, CDungeon* dungeon)
 
 	bool gateFlag = false; //标记人物是否碰撞门
 	clock_t cur = clock();
-	if (m_GateTYpe != CLOSE_GATE)
+	if (m_GateTYpe != CLOSE_GATE && !dungeon->GetCurStage()->IsBossRoom())
 		if (cx >= m_X - 20 && cx <= m_X + 80 && cy >= m_Y - 50 && cy <= m_Y + 20
 			|| cx >= m_X - 10 && cx <= m_X + m_Mat_RenderMat.cols + 10 && cy >= m_Y - 20 && cy <= m_Y + 20
 			|| cx >= m_X - 10 && cx <= m_X + m_Mat_RenderMat.cols + 10 && cy >= m_Y - 60 && cy <= m_Y + 10
@@ -297,9 +297,20 @@ bool Tree::Update(CStage & stage, CDungeon * dungeon)
 	int cy = character->GetY();
 	Rect character_rect = character->GetRectXY();
 	Rect tree_rect = GetRectXY();
+
 	if ((character_rect&tree_rect).area() != 0) //有交集
 	{
-		character->Move(character->GetMoveDirection(), -1);
+		int tmpdir = character->GetOrientation();
+		if(character_rect.x >tree_rect.x)
+			character->Move(DIR_RIGHT);
+		else if (character_rect.x < tree_rect.x + tree_rect.width)
+			character->Move(DIR_LEFT);
+		else if (character_rect.y >tree_rect.y)
+			character->Move(DIR_DOWN);
+		else if (character_rect.y < tree_rect.y + tree_rect.height)
+			character->Move(DIR_UP);
+		character->Move(tmpdir, 0);
+		//character->Move(character->GetMoveDirection(), -1);
 	}
 	return true;
 }

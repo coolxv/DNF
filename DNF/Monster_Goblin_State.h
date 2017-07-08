@@ -13,7 +13,7 @@ class CMonster_Goblin_StandingState
 public:
 	CMonster_Goblin_StandingState(CMonster* monster) : CMonster_State(monster) {};
 	~CMonster_Goblin_StandingState() {};
-	void InitState();
+	void InitState(); 
 	void Update();
 };
 

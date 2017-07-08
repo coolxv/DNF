@@ -20,6 +20,7 @@ CDungeon_Rolland::~CDungeon_Rolland()
 
 void CDungeon_Rolland::DoInitDungeon()
 {
+	PlaySound(TEXT("./ImagePacks2/Music/forest02.wav"), NULL, SND_FILENAME | SND_ASYNC| SND_LOOP);
 	//初始化副本场景
 	CStage* p = new RollandStage0();
 	p->SetCharacter(m_Character);

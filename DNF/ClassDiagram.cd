@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAnimationEffect" Collapsed="true">
+    <Position X="6" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACEAAAAAABIgQAAACAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AnimationEffect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPhysicalAttackAnimation" Collapsed="true">
+    <Position X="0.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIAACAAAAAAAAAAEAAAAAIAAAgAAAAAAAAAAAgAA=</HashCode>
+      <FileName>AnimationEffect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAwakeDEffectAnimation" Collapsed="true">
+    <Position X="2.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAQAQAAhAAAAAAAAAAAgAA=</HashCode>
+      <FileName>AnimationEffect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAwakeSEffectAnimation" Collapsed="true">
+    <Position X="5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAICQAAAAgAAAAAAAAAAAgAA=</HashCode>
+      <FileName>AnimationEffect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CNumberAnimation" Collapsed="true">
+    <Position X="7.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgCABCAAAAAAAAAAAgAQABgAgAAABAAABAAABAA=</HashCode>
+      <FileName>AnimationEffect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CResultAnimation" Collapsed="true">
+    <Position X="9.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEIAQIiYgAgIoAAEAIBAAAAUgGAMgGAABBQAKCAsAAA=</HashCode>
+      <FileName>AnimationEffect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGameOverAnimation" Collapsed="true">
+    <Position X="11.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAFAAAAAAAAQAAAAgAAAAAAAgAAAAIA=</HashCode>
+      <FileName>AnimationEffect.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCharacter" Collapsed="true">
+    <Position X="31.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAABECnkJiBKZYNYNgAAQCAEAkRpCAAVDgQjAYSEAI=</HashCode>
+      <FileName>Character.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCharacterState" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAMAkAAAAAAAAAEAAgAhAAAAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterWalkintState" Collapsed="true">
+    <Position X="1" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAIAIAAAAAAAAAAAAAAAAAAAAAAAgABAAEAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterRunningState" Collapsed="true">
+    <Position X="5.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAABAQAAAAAAAAAAAAAAAAAAgABAAAAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterStandingState" Collapsed="true">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAACAAAAAAAggABAAAAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterNormalAttackingState" Collapsed="true">
+    <Position X="10" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgABAAAAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterJumpingState" Collapsed="true">
+    <Position X="12.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggABAAAAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterBeAttackState" Collapsed="true">
+    <Position X="14.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAAgABAAAAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterZEffectingState" Collapsed="true">
+    <Position X="16.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgABAAAAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterSEffectingState" Collapsed="true">
+    <Position X="19" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgABAAAAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterDEffectingState" Collapsed="true">
+    <Position X="21.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgABAAAAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterDeadState" Collapsed="true">
+    <Position X="3.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgABAAAAAA=</HashCode>
+      <FileName>CharacterState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CDungeon" Collapsed="true">
+    <Position X="7.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIYAkIEIAIACQYQGQABAEAABQIAAgAgBAAhAAACAAAA=</HashCode>
+      <FileName>Dungeon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CDungeon_Comics" Collapsed="true">
+    <Position X="2.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAGCIAgBAAAAAAAAAAAIIEKiAAAAEgAAAAAAAA=</HashCode>
+      <FileName>Dungeon_Comics.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CDungeon_Home" Collapsed="true">
+    <Position X="5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DBQAIAAgAAAAAAAAAAAAAAIAAMAAgAAAAQggAAAAAAA=</HashCode>
+      <FileName>Dungeon_Home.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CDungeon_Maze" Collapsed="true">
+    <Position X="7.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAhAAAIAAAAQAAgEAgECAJEAgAAAAAAgUBACAAg=</HashCode>
+      <FileName>Dungeon_Maze.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CDungeon_Rolland" Collapsed="true">
+    <Position X="9.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACgQAAQAAAAAAIAAIEAAAAAAAIABgAECgAAAAAAACAA=</HashCode>
+      <FileName>Dungeon_Rolland.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CDungeon_RollandDeep" Collapsed="true">
+    <Position X="11.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAABAAIAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dungeon_RollandDeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CDungeon_SelectDungeon" Collapsed="true">
+    <Position X="14" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAEAAIIABAYAAAAAAAgAAMAAgAAAIAgAAAABAAA=</HashCode>
+      <FileName>Dungeon_SelectDungeon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CDungeon_Start" Collapsed="true">
+    <Position X="0.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAABAAIAAAAAAAgAIAAAAAIAAgQAABAgCABAAAAA=</HashCode>
+      <FileName>Dungeon_Start.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGame" Collapsed="true">
+    <Position X="34" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAACAFAAAAAAEAABQAACAQAAAAAAAABAIAAAAQAI=</HashCode>
+      <FileName>Game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CHud" Collapsed="true">
+    <Position X="35.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAgBaVgqUKAAAQAAAQqASIyAgAJQAQABAkACCABMA=</HashCode>
+      <FileName>Hud.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster" Collapsed="true">
+    <Position X="18" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwgpACIkIjDKBYIUMCIBBAQEQhQgAAAwAkQDAYCBJA=</HashCode>
+      <FileName>Monster.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_BossGoblin" Collapsed="true">
+    <Position X="15.75" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAEAIAAAACAEAAAgAAAAAgUAQQABgI=</HashCode>
+      <FileName>Monster_BossGoblin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_BossGoblin_StandingState" Collapsed="true">
+    <Position X="17" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAA=</HashCode>
+      <FileName>Monster_BossGoblin_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_BossGoblin_RunningState" Collapsed="true">
+    <Position X="26" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAIAAAAAAAAAAEAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Monster_BossGoblin_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_BossGoblin_BeAttackedState" Collapsed="true">
+    <Position X="23.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAIAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Monster_BossGoblin_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_BossGoblin_AttackingState" Collapsed="true">
+    <Position X="28.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Monster_BossGoblin_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Goblin_StandingState" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAAAAA=</HashCode>
+      <FileName>Monster_Goblin_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Goblin_BeAttackedState" Collapsed="true">
+    <Position X="19.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Monster_Goblin_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Goblin_RunningState" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Monster_Goblin_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Goblin_AttackingState" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Monster_Goblin_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_State" Collapsed="true">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAhAAAAAEAAAAAAAAIAAAAAAAAAAAAAAgBwAAAAAA=</HashCode>
+      <FileName>Monster_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_BeAttackedState" Collapsed="true">
+    <Position X="21.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAAADAAAAAAIBAgAAAAAAAAgAAAAAAAI=</HashCode>
+      <FileName>Monster_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Goblin" Collapsed="true">
+    <Position X="18" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAggAAAAAAIACAACAEAAAgAAAAAgUAQQABAI=</HashCode>
+      <FileName>Monster_Goblin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Tau" Collapsed="true">
+    <Position X="20.25" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAEAAgAAAAAAIAAIgCAEAAAiAAAAAgUgQQIBII=</HashCode>
+      <FileName>Monster_Tau.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Tau_StandingState" Collapsed="true">
+    <Position X="30.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAgAAAACAAA=</HashCode>
+      <FileName>Monster_Tau_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Tau_RunningState" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAIAAABAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Monster_Tau_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Tau_AttackingState" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAAAAAAAAAAAAAAAAACAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Monster_Tau_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Tau_BeAttackedState" Collapsed="true">
+    <Position X="21.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Monster_Tau_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Tau_HittingState" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAABAAAAAAAAAAAAIABAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Monster_Tau_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster_Tau_Roar" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAACAAABAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Monster_Tau_State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CObjectBase" Collapsed="true">
+    <Position X="23.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABABAAAAAABAAAgEABEQBAAsACQZBECAEAAAAA=</HashCode>
+      <FileName>ObjectBase.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="COtherObject" Collapsed="true">
+    <Position X="25.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAAAAAAAAAABAAQAAACAAgAAQAAgAAAACAAA=</HashCode>
+      <FileName>OtherObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gate" Collapsed="true">
+    <Position X="27" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAADAAQAAAAAAAAIAAAAAAgAyAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OtherObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tree" Collapsed="true">
+    <Position X="29.25" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAIAICAAIAAAAABAAAAAAAAgAAAAAAAQAAAAEA=</HashCode>
+      <FileName>OtherObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ThrowStone" Collapsed="true">
+    <Position X="22.5" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACYAAAAAAAAABECAAAAIAAAAAAAAgAAAAAAAAQAAAAA=</HashCode>
+      <FileName>OtherObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Meat" Collapsed="true">
+    <Position X="24.75" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAADCABAAAAAAAAAAAAAAAAAAAQgAQAAAAAgAAAAAA=</HashCode>
+      <FileName>OtherObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStage_RollandDeep" Collapsed="true">
+    <Position X="23.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEBABAAgBEAAAAAAAAAAAAAAAACAQIAAAAAAgAAA=</HashCode>
+      <FileName>Stage_RollandDeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandDeepStage0" Collapsed="true">
+    <Position X="21.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAEAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Stage_RollandDeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandDeepStage1" Collapsed="true">
+    <Position X="23.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_RollandDeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandDeepStage2" Collapsed="true">
+    <Position X="26" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAICAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_RollandDeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandDeepStage3" Collapsed="true">
+    <Position X="28.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_RollandDeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandDeepStage4" Collapsed="true">
+    <Position X="30.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAEAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_RollandDeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandDeepStage5" Collapsed="true">
+    <Position X="17" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_RollandDeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandDeepStage6" Collapsed="true">
+    <Position X="19.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_RollandDeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStage_Rolland" Collapsed="true">
+    <Position X="7" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAEBABAAABEAAAAAAAAACACAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_Rolland.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandStage0" Collapsed="true">
+    <Position X="1.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAEAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_Rolland.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandStage1" Collapsed="true">
+    <Position X="3.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAgQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_Rolland.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandStage2" Collapsed="true">
+    <Position X="5.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAIAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_Rolland.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandStage3" Collapsed="true">
+    <Position X="8" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEIAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_Rolland.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandStage4" Collapsed="true">
+    <Position X="10.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAEAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stage_Rolland.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RollandStage5" Collapsed="true">
+    <Position X="12.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAQAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Stage_Rolland.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStage" Collapsed="true">
+    <Position X="16" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BFQAIAmBVBCAUbADDAgAAAHNQAiAIABVmDQAABCQIAk=</HashCode>
+      <FileName>Stage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CStage_Maze" Collapsed="true">
+    <Position X="14.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEJAAAAABkAAAAAAAAAAAAIQAAACQgBgAAAAAgAI=</HashCode>
+      <FileName>Stage_Maze.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="MAZE_NODE" Collapsed="true">
+    <Position X="35.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAQAAAAAAAAA=</HashCode>
+      <FileName>Dungeon_Maze.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="_Meat" Collapsed="true">
+    <Position X="34" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAABAACAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>OtherObject.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="NEXT_STAGE" Collapsed="true">
+    <Position X="34" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAABAAAAAAAAgAAAAIAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Stage.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="DIRECTION" Collapsed="true">
+    <Position X="35.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAgAAAAAChAAAAA=</HashCode>
+      <FileName>stdafx.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CHARACTEREFFECT" Collapsed="true">
+    <Position X="34" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAoEAIA=</HashCode>
+      <FileName>stdafx.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DUNGEON" Collapsed="true">
+    <Position X="34" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAACAAAAAAAAAAQAA=</HashCode>
+      <FileName>stdafx.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

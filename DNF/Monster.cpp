@@ -193,7 +193,12 @@ void CMonster::Update()
 	}
 	if (m_Stage->GetCharacter()->GetCurState()->GetMatId() == 138)
 	{
-		m_Stage->AddScore(m_Hp);
-		SetDead(true);
+		bool iscrit =false;
+		int damage = m_Stage->GetCharacter()->GetDamage(EFFECTD, iscrit) - GetArmor();
+		m_Stage->GetCharacter()->GetAnimationEffects()->push_back(
+			new CNumberAnimation(damage, Point3i(GetX(), GetY(), GetHeight() * 2),iscrit ? 1 : 0));
+		SetHp(GetHp()-damage);
+		//m_Stage->AddScore(m_Hp);
+		//SetDead(true);
 	}
 }

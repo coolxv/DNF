@@ -45,6 +45,7 @@ CDungeon_Home::~CDungeon_Home()
 
 void CDungeon_Home::DoInitDungeon()
 {
+	PlaySound(TEXT("./ImagePacks2/Music/gate_new.wav"), NULL, SND_FILENAME | SND_ASYNC| SND_LOOP);
 	m_Character->SetStageWidth(954);
 	m_Character->SetViewSize(954, 190, 360);
 	m_Character->SetX(450);
