@@ -1,7 +1,7 @@
 #include "Monster_Tau.h"
 #include "Monster_Tau_State.h"
 
-Mat CMonSter_Tau::s_Mat_Body[] = 
+Mat CMonster_Tau::s_Mat_Body[] = 
 {
 	imread("./ImagePacks2/Monster/tau/0.png", -1),
 	imread("./ImagePacks2/Monster/tau/1.png", -1),
@@ -37,7 +37,7 @@ Mat CMonSter_Tau::s_Mat_Body[] =
 	imread("./ImagePacks2/Monster/tau/31.png", -1)
 };
 
-Mat CMonSter_Tau::s_Mat_Body_Mask[] = 
+Mat CMonster_Tau::s_Mat_Body_Mask[] = 
 {
 	imread("./ImagePacks2/Monster/tau/0.png", 0),
 	imread("./ImagePacks2/Monster/tau/1.png", 0),
@@ -73,9 +73,9 @@ Mat CMonSter_Tau::s_Mat_Body_Mask[] =
 	imread("./ImagePacks2/Monster/tau/31.png", 0)
 };
 
-Mat CMonSter_Tau::s_Mat_Avator= imread("./ImagePacks2/Monster/tau/tau.png", -1);
+Mat CMonster_Tau::s_Mat_Avator= imread("./ImagePacks2/Monster/tau/tau.png", -1);
 
-CMonSter_Tau::CMonSter_Tau(CStage* stage, int x, int y, int z)
+CMonster_Tau::CMonster_Tau(CStage* stage, int x, int y, int z)
 {
 	m_Stage = stage;
 	m_X = x;
@@ -99,11 +99,11 @@ CMonSter_Tau::CMonSter_Tau(CStage* stage, int x, int y, int z)
 	__InitOffset();
 }
 
-CMonSter_Tau::~CMonSter_Tau()
+CMonster_Tau::~CMonster_Tau()
 {
 }
 
-void CMonSter_Tau::DoRender(Mat& mat, int viewX)
+void CMonster_Tau::DoRender(Mat& mat, int viewX)
 {
 	int offsetY = CStage::s_OffsetY;
 	Mat body, body_mask;
@@ -148,7 +148,7 @@ void CMonSter_Tau::DoRender(Mat& mat, int viewX)
 	//tmp.copyTo(ROI, tmp_);
 }
 
-Rect CMonSter_Tau::GetAttackRect()
+Rect CMonster_Tau::GetAttackRect()
 {
 	Mat mMat = s_Mat_Body[m_State->GetMatId()];
 	int tx = m_Orientation == DIR_RIGHT ? m_Offset_LeftBottom[m_State->GetMatId()].x : m_Offset_LeftBottom_Left[m_State->GetMatId()].x;
@@ -164,17 +164,23 @@ Rect CMonSter_Tau::GetAttackRect()
 	//return Rect(mX , mY - mThick - mZ / 2 , mMat.cols - tx, mThick);
 }
 
-int CMonSter_Tau::GetDamage()
+int CMonster_Tau::GetDamage()
 {
 	return RANDNUM(MONSTER_TAU_ATTACKPOWER, MONSTER_TAU_ATTACKPOWER_);
 }
 
-int CMonSter_Tau::GetArmor()
+int CMonster_Tau::GetArmor()
 {
 	return MONSTER_TAU_ARMOR;
 }
 
-void CMonSter_Tau::__InitOffset()
+
+void CMonster_Tau::SetPreHit(clock_t t)
+{
+	m_PreHit = t;
+}
+
+void CMonster_Tau::__InitOffset()
 {
 	m_Offset_LeftBottom[0] = Point(63, 164);
 	m_Offset_LeftBottom[1] = Point(52, 177);

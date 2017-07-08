@@ -599,3 +599,7 @@ void CharacterDeadState::InitState(CCharacter& character)
 	character.SetDead(true);
 	character.SetHp(0);
 }
+
+void CharacterDeadState::DoHandleInput(CCharacter& character, int input)
+{
+}

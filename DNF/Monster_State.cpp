@@ -147,3 +147,8 @@ void CMonster_BeAttackedState::InitState()
 	m_Clock_PreUpdate = clock();
 	m_Clock_PreBeAttacked = clock();
 }
+
+CMonster_State::CMonster_State(CMonster* monster)
+{
+	m_Monster = monster; m_AttackCnt = 0;
+}

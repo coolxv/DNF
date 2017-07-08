@@ -211,7 +211,7 @@ bool Gate::Update(CStage& stage, CDungeon* dungeon)
 				m_Clock_GateTimer = cur;
 				return true;
 			}
-			else if (cur - m_Clock_GateTimer < 1500)return true;
+			else if (cur - m_Clock_GateTimer < 1000)return true;
 			switch (m_GatePosition)
 			{
 			case RIGHT_GATE:
@@ -288,13 +288,6 @@ Tree::Tree(int x, int y,int type)
 
 Tree::~Tree()
 {
-}
-
-void Tree::Init()
-{
-	m_Thick = 20;
-	m_Width = 60;
-	m_Height = 190;
 }
 
 bool Tree::Update(CStage & stage, CDungeon * dungeon)
@@ -438,6 +431,11 @@ Mat Meat::s_Mat_Meat[][4] =
 	imread("./ImagePacks2/Object/Meat/0/1.png",-1),
 	imread("./ImagePacks2/Object/Meat/0/2.png",-1),
 	imread("./ImagePacks2/Object/Meat/0/3.png",-1),
+
+	imread("./ImagePacks2/Object/Meat/1/0.png",-1),
+	imread("./ImagePacks2/Object/Meat/1/1.png",-1),
+	imread("./ImagePacks2/Object/Meat/1/2.png",-1),
+	imread("./ImagePacks2/Object/Meat/1/3.png",-1),
 };
 Mat Meat::s_Mat_Meat_Mask[][4] =
 {
@@ -445,6 +443,11 @@ Mat Meat::s_Mat_Meat_Mask[][4] =
 	imread("./ImagePacks2/Object/Meat/0/1.png",0),
 	imread("./ImagePacks2/Object/Meat/0/2.png",0),
 	imread("./ImagePacks2/Object/Meat/0/3.png",0),
+
+	imread("./ImagePacks2/Object/Meat/1/0.png",0),
+	imread("./ImagePacks2/Object/Meat/1/1.png",0),
+	imread("./ImagePacks2/Object/Meat/1/2.png",0),
+	imread("./ImagePacks2/Object/Meat/1/3.png",0),
 };
 
 Meat::Meat(CMonster* monster,int type)

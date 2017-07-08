@@ -17,6 +17,11 @@ CAnimationEffect::~CAnimationEffect()
 {
 }
 
+bool CAnimationEffect::GetComplete()
+{
+	return m_Complete;
+}
+
 Mat CPhysicalAttackAnimation::s_Mat_Slash[][3] =
 {
 	imread("./ImagePacks2/Animation/slashlarge1.img/0.png",-1),
@@ -101,9 +106,9 @@ void CPhysicalAttackAnimation::DoRender(Mat& mat, int viewX)
 	if (xx + tmp.cols >= mat.cols || yy + tmp.rows >= mat.rows)return;
 	Mat ROI = mat(Rect(xx, yy, tmp.cols, tmp.rows));
 	tmp.copyTo(ROI, tmp_);
-	if (clock() - m_Clock_PreRender > 80)
+	if (clock() - m_Clock_Update > 80)
 	{
-		m_Clock_PreRender = clock();
+		m_Clock_Update = clock();
 		m_MatId++;
 	}
 }
@@ -202,9 +207,9 @@ void CAwakeDEffectAnimation::DoRender(Mat& mat, int viewX)
 		}
 	}
 
-	if (clock() - m_Clock_PreRender > 100)
+	if (clock() - m_Clock_Update > 100)
 	{
-		m_Clock_PreRender = clock();
+		m_Clock_Update = clock();
 		m_MatId++;
 	}
 }
@@ -310,9 +315,9 @@ void CAwakeSEffectAnimation::DoRender(Mat& mat, int viewX)
 		}
 	}
 
-	if (clock() - m_Clock_PreRender > 100)
+	if (clock() - m_Clock_Update > 100)
 	{
-		m_Clock_PreRender = clock();
+		m_Clock_Update = clock();
 		m_MatId++;
 	}
 }
@@ -357,7 +362,7 @@ CNumberAnimation::CNumberAnimation(long long num, Point3i p,int style)
 	:m_Pos(p), m_CurPos(p)
 { 
 	m_NumStyle = style;
-	m_Clock_PreRender = 0;
+	m_Clock_Update = 0;
 	m_Clock_stay = 0;
 	while (num)
 	{
@@ -417,13 +422,13 @@ void CNumberAnimation::DoRender(Mat& mat, int viewX)
 			}
 		}
 	}
-	if (clock() - m_Clock_PreRender > 50 &&m_Clock_stay==0)
+	if (clock() - m_Clock_Update > 50 &&m_Clock_stay==0)
 	{
 		m_CurPos.z += m_Zspeed;
 		m_Zspeed--;
 		if (m_Zspeed==0)
 			m_Clock_stay = clock();
-		m_Clock_PreRender = clock();
+		m_Clock_Update = clock();
 	}
 }
 
@@ -582,7 +587,6 @@ void CResultAnimation::DoRender(Mat& bg, int viewX)
 
 void CResultAnimation::onMouse(int Event, int x, int y, int flags, void* param)
 {
-	printf("%d %d,%d\n", Event, x, y);
 	Point2i point(x,y);
 	if (m_IsSelecting)
 	{

@@ -14,7 +14,7 @@ CHud::~CHud()
 void CHud::Render(Mat& mat)
 {
 	if (mat.cols == 800)return;
-	__MergeMat(mat, m_Mat_Hud, m_Mat_Hud_Mask, 50);
+	__VerticalMergeMat(mat, m_Mat_Hud, m_Mat_Hud_Mask, 50);
 	if (m_hp_percentage_animation >= m_hp_percentage_cur+5)
 		__ShowHpAnimation(mat);
 	else
@@ -74,12 +74,12 @@ void CHud::Render(Mat& mat)
 		addWeighted(mask, 0.8, roi, 1, 0, roi);
 	}
 	//------------------绘制fps--------------
-	m_FPSCount++;
+	m_RenderCount++;
 	if (cur - m_Clock_PreRender >= 1000) //1s计算一次平均帧率
 	{
-		m_fps = m_FPSCount / ((cur - m_Clock_PreRender) / 1000);
+		m_fps = m_RenderCount / ((cur - m_Clock_PreRender) / 1000);
 		m_Clock_PreRender = cur;
-		m_FPSCount = 0;
+		m_RenderCount = 0;
 	}
 	putText(mat, format("FPS:%d", m_fps), Point(100, 30), CV_FONT_HERSHEY_PLAIN
 		, 1, Scalar(255, 255, 255), 1);
@@ -163,7 +163,7 @@ void CHud::HandleMouse(int Event, int x, int y, int flags, void* param)
 void CHud::Initial()
 {
 	m_fps = 0;
-	m_FPSCount = 0;
+	m_RenderCount = 0;
 	m_Clock_PreRender = clock();
 	m_Mat_Hud = imread("./ImagePacks2/BaseUI/mainhud.png", -1);
 	m_Mat_Hud_Mask = imread("./ImagePacks2/BaseUI/mainhud.png", 0);
@@ -207,7 +207,7 @@ void CHud::SetCharacter(CCharacter* character)
 	m_mp_percentage_animation = m_mp_percentage_cur;
 }
 
-void CHud::__MergeMat(Mat& a, Mat& b, Mat& b_, int div)
+void CHud::__VerticalMergeMat(Mat& a, Mat& b, Mat& b_, int div)
 {
 	int tmp = a.rows;
 	copyMakeBorder(a, a, 0, b.rows - div, 0, 0, 0);

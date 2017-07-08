@@ -78,22 +78,25 @@
 #define CHARACTER_EFFECT_POWER_S2 2.5
 #define CHARACTER_EFFECT_POWER_D 10
 
-#define MAZE_SIZE 20
+#define MAZE_SIZE 15
 using namespace cv;
 
 
+/** @brief  方向*/
 enum DIRECTION
 {
 	DIR_LEFT, DIR_RIGHT, DIR_UP, DIR_DOWN, DIR_NONE
 };
 
+/** @brief  角色技能*/
 enum CHARACTEREFFECT
 {
 	EFFECTX,EFFECTZ, EFFECTS, EFFECTS2,EFFECTD,NONE
 };
 
+/** @brief  地下城*/
 enum DUNGEON
 {
-	ROLLAND,ROLLANDDEEP
+	ROLLAND,ROLLANDDEEP,MAZE
 };
 // TODO: 在此处引用程序需要的其他头文件

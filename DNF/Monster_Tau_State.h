@@ -1,5 +1,12 @@
 #pragma once
 #include "Monster_State.h"
+
+/**
+ * @class CMonster_Tau_StandingState
+ * @brief 牛头站立状态
+ * 
+ *
+ */
 class CMonster_Tau_StandingState
 	:public CMonster_State
 {
@@ -11,6 +18,12 @@ public:
 
 };
 
+/**
+ * @class CMonster_Tau_RunningState
+ * @brief 牛头奔跑状态
+ * 
+ *
+ */
 class CMonster_Tau_RunningState
 	:public CMonster_State
 {
@@ -22,6 +35,12 @@ public:
 
 };
 
+/**
+ * @class CMonster_Tau_AttackingState
+ * @brief 牛头攻击状态
+ * 
+ *
+ */
 class CMonster_Tau_AttackingState
 	:public CMonster_State
 {
@@ -32,6 +51,13 @@ public:
 	void Update();
 };
 
+
+/**
+ * @class CMonster_Tau_BeAttackedState
+ * @brief 牛头被攻击状态
+ *
+ *不重写基类Update方法，只设定怪物的属性值
+ */
 class CMonster_Tau_BeAttackedState
 	:public CMonster_BeAttackedState
 {
@@ -39,11 +65,24 @@ public:
 	CMonster_Tau_BeAttackedState(CMonster* monster);
 	~CMonster_Tau_BeAttackedState() {};
 
-	void SwitchStanding();
+	
+	/**
+	 * @brief 切换为站立状态
+	 * 
+	 * 
+	 * @return  void  
+	 */
+	 void SwitchStanding();
 
 };
 
 
+/**
+ * @class CMonster_Tau_HittingState
+ * @brief 牛头"冲撞"状态
+ * 
+ *
+ */
 class CMonster_Tau_HittingState
 	:public CMonster_State
 {
@@ -54,9 +93,15 @@ public:
 	void InitState();
 	void Update();
 private:
-	bool m_HitFlag; //标记是否撞过
+	bool m_HitFlag; /**<  标记是否撞过*/
 };
 
+/**
+ * @class CMonster_Tau_Roar
+ * @brief 牛头"吼叫"状态
+ * 
+ *
+ */
 class CMonster_Tau_Roar
 	:public CMonster_State
 {

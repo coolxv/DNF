@@ -23,32 +23,32 @@ void CDungeon_Rolland::DoInitDungeon()
 	//初始化副本场景
 	CStage* p = new RollandStage0();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandStage1();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandStage2();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandStage3();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandStage4();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandStage5();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 

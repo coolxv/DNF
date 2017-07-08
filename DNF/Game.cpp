@@ -95,7 +95,6 @@ CGame::CGame()
 
 	srand(unsigned(time(NULL)));
 	m_GameState = GAMESTATE_HOME;
-	InitRec();
 	m_Character = new CCharacter();
 	m_Character->SetAnimationEffectsVector(&m_AnimationEffects);
 
@@ -108,13 +107,6 @@ CGame::CGame()
 	m_Hud->SetDungeon(m_CurDungeon);
 	m_Hud->Initial();
 }
-
-void CGame::InitRec()
-{
-	m_Mat_ui = imread("./ImagePacks2/BaseUI/mainhud.png", -1);
-	m_Mat_ui_mask = imread("./ImagePacks2/BaseUI/mainhud.png", 0);
-}
-
 
 void CGame::onMouse(int Event, int x, int y, int flags, void* param)
 {
@@ -155,16 +147,4 @@ void CGame::Run()
 		if (nextFrameTime > currentFrameTime)
 			waitKey(nextFrameTime - currentFrameTime);
 	}
-}
-
-
-
-
-//½«a£¬bºÏ²¢
-void CGame::__MergeMat(Mat& a, Mat& b, Mat& b_, int div)
-{
-	int tmp = a.rows;
-	copyMakeBorder(a, a, 0, b.rows - div, 0, 0, 0);
-	Mat roi(a, Rect(0, tmp - div, b.cols, b.rows));
-	b.copyTo(roi, b_);
 }

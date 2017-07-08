@@ -141,7 +141,7 @@ void CMonster_Tau_BeAttackedState::SwitchStanding()
 //////////////////////////////////////////////////////////////////////////
 void CMonster_Tau_HittingState::InitState()
 {
-	CMonSter_Tau* tau = (CMonSter_Tau*)m_Monster;
+	CMonster_Tau* tau = (CMonster_Tau*)m_Monster;
 	if (clock() - tau->GetPreHit() < 10000)
 	{
 		m_Monster->SetState(new CMonster_Tau_RunningState(m_Monster));
@@ -198,7 +198,7 @@ void CMonster_Tau_HittingState::Update()
 void CMonster_Tau_Roar::InitState()
 {
 
-	CMonSter_Tau* tau = (CMonSter_Tau*)m_Monster;
+	CMonster_Tau* tau = (CMonster_Tau*)m_Monster;
 	if (clock() - tau->GetPreRoar() < 10000)
 	{
 		m_Monster->SetState(new CMonster_Tau_RunningState(m_Monster));

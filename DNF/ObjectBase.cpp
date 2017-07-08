@@ -1,5 +1,17 @@
 #include "ObjectBase.h"
 
+
+Rect CObjectBase::GetRectXY()
+{
+	return Rect(m_X, m_Y - m_Thick, m_Width, m_Thick);
+}
+
+
+Rect CObjectBase::GetRectXZ()
+{
+	return Rect(m_X, m_Y - m_Height - m_Z / 2, m_Width, m_Height);
+}
+
 CObjectBase::CObjectBase()
 {
 }

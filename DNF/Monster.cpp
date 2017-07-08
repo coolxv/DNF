@@ -1,12 +1,14 @@
 #include "Monster.h"
 #include "Monster_State.h"
 #include "OtherObject.h"
+#include "Monster_Tau.h"
 #include "CharacterState.h"
 
 CMonster::CMonster()
 {
 	m_IsDead = false;
-	m_isBoss = false;
+	m_isBoss = false; 
+	m_JumpSpeed = 0;
 }
 
 
@@ -145,7 +147,10 @@ void CMonster::SetDead(bool dead)
 	m_IsDead = dead;
 	if (dead)
 	{
-		m_Stage->m_OtherObjects.push_back(new Meat(this, 0));
+		if(typeid(*this) == typeid(CMonster_Tau))
+			m_Stage->m_OtherObjects.push_back(new Meat(this, 1));
+		else
+			m_Stage->m_OtherObjects.push_back(new Meat(this, 0));
 	}
 }
 

@@ -19,37 +19,37 @@ void CDungeon_RollandDeep::DoInitDungeon()
 	//初始化副本场景
 	CStage* p = new RollandDeepStage0();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandDeepStage1();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandDeepStage2();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandDeepStage3();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandDeepStage4();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandDeepStage5();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 	p = new RollandDeepStage6();
 	p->SetCharacter(m_Character);
-	p->SetScorePointer(&m_score);
+	p->SetScorePointer(&m_Score);
 	m_Stages.push_back(p);
 
 

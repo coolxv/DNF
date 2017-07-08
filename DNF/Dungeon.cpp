@@ -11,7 +11,7 @@ CDungeon::CDungeon()
 {
 	m_Clock_Start = clock();
 	m_GameOver = false;
-	m_score = 0;
+	m_Score = 0;
 	m_IsClearance = false;
 	if(m_Character)
 		m_Character->SetState(&s_Standing);
@@ -90,7 +90,7 @@ void CDungeon::Update()
 	{
 		m_IsClearance = true;
 		int ms = clock() - m_Clock_Start;
-		int score = m_score - ms;
+		int score = m_Score - ms;
 		int min = (ms / 60000);
 		ms -= min * 60000;
 		int sec = ms / 1000;

@@ -124,7 +124,7 @@ void RollandDeepStage2::InitStage()
 	//Éú³É¹ÖÎï
 	if (!IsClearance())
 	{
-		CMonster* mp = new CMonSter_Tau(this, 300, 100, 0);
+		CMonster* mp = new CMonster_Tau(this, 300, 100, 0);
 		mp->SetIsBoss(true);
 		m_Monsters.push_back(mp);
 

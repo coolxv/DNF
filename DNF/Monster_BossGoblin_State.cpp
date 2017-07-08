@@ -30,7 +30,6 @@ void CMonster_BossGoblin_RunningState::InitState()
 {
 	m_MatId = 11; //11~16
 	m_Clock_PreUpdate = clock();
-	m_Clock_PreRun = clock();
 }
 
 void CMonster_BossGoblin_RunningState::Update()

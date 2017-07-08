@@ -206,7 +206,7 @@ void RollandStage5::InitStage()
 		mp = new CMonster_BossGoblin(this, 850, 80, 0);
 		m_Monsters.push_back(mp);
 
-		mp = new CMonSter_Tau(this,900,90,0);
+		mp = new CMonster_Tau(this,900,90,0);
 		mp->SetIsBoss(true);
 		m_Monsters.push_back(mp);
 	}
