@@ -27,6 +27,12 @@ void CGame::HandleInput()
 		m_CurDungeon->DoHandleInput(KEY_EFFECTD);
 	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
 		m_CurDungeon->DoHandleInput(KEY_SPACE);
+	if (GetAsyncKeyState('B') & 0x8000)
+		m_CurDungeon->DoHandleInput('B');
+	if (GetAsyncKeyState('N') & 0x8000)
+		m_CurDungeon->DoHandleInput('N');
+	if (GetAsyncKeyState(VK_ESCAPE) & 0x8000)
+		m_IsRunning = false;
 }
 
 void CGame::Update()
@@ -93,11 +99,7 @@ CGame::CGame()
 	m_Character = new CCharacter();
 	m_Character->SetAnimationEffectsVector(&m_AnimationEffects);
 
-	//m_CurDungeon = new CDungeon_Rolland();
-	m_CurDungeon = new CDungeon_Home();
-	//m_CurDungeon = new CDungeon_Start();
-	//m_CurDungeon = new CDungeon_Comics();
-	//m_CurDungeon = new CDungeon_Maze();
+	m_CurDungeon = new CDungeon_Start();
 	m_CurDungeon->SetCharacter(m_Character);
 	m_CurDungeon->DoInitDungeon();
 

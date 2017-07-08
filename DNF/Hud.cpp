@@ -13,6 +13,7 @@ CHud::~CHud()
 
 void CHud::Render(Mat& mat)
 {
+	if (mat.cols == 800)return;
 	__MergeMat(mat, m_Mat_Hud, m_Mat_Hud_Mask, 50);
 	if (m_hp_percentage_animation >= m_hp_percentage_cur+5)
 		__ShowHpAnimation(mat);
@@ -80,7 +81,7 @@ void CHud::Render(Mat& mat)
 		m_Clock_PreRender = cur;
 		m_FPSCount = 0;
 	}
-	putText(mat, format("FPS:%d", m_fps), Point(320, 30), CV_FONT_HERSHEY_PLAIN
+	putText(mat, format("FPS:%d", m_fps), Point(100, 30), CV_FONT_HERSHEY_PLAIN
 		, 1, Scalar(255, 255, 255), 1);
 }
 

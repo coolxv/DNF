@@ -237,6 +237,7 @@ void CCharacter::SetHp(int hp)
 {
 	if (hp <= 0)
 	{
+		m_HP = 0;
 		SetState(&s_Dead);
 	}
 	else if (hp>CHARACTER_HP)

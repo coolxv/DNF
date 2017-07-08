@@ -1,4 +1,5 @@
 #include "Dungeon_SelectDungeon.h"
+#include "Dungeon_Maze.h"
 #include "Dungeon_Rolland.h"
 #include "Dungeon_RollandDeep.h"
 
@@ -8,22 +9,25 @@ Mat CDungeon_SelectDungeon::s_Mat_BG = imread("./ImagePacks2/Map/select/bg.png",
 Mat CDungeon_SelectDungeon::s_Mat_DungeonPix[] =
 {
 	imread("./ImagePacks2/Map/select/rolland0.png", -1),
-	imread("./ImagePacks2/Map/select/rollanddeep0.png", -1)
+	imread("./ImagePacks2/Map/select/rollanddeep0.png", -1),
+	imread("./ImagePacks2/Map/select/maze0.png", -1)
 };
 
 Mat CDungeon_SelectDungeon::s_Mat_DungeonPix_Select[] =
 {
 	imread("./ImagePacks2/Map/select/rolland1.png", -1),
-	imread("./ImagePacks2/Map/select/rollanddeep1.png", -1)
+	imread("./ImagePacks2/Map/select/rollanddeep1.png", -1),
+	imread("./ImagePacks2/Map/select/maze1.png", -1)
 };
 
-int CDungeon_SelectDungeon::s_PixPos[][2] = { 207,372 ,357,165 };
-int CDungeon_SelectDungeon::s_SelectPixPos[][2] = { 180,376,334,162 };
+int CDungeon_SelectDungeon::s_PixPos[][2] = { 207,372 ,357,165 ,551,338};
+int CDungeon_SelectDungeon::s_SelectPixPos[][2] = { 180,376,334,162 ,536,325};
 
 CDungeon_SelectDungeon::CDungeon_SelectDungeon()
 {
 	m_Quit = false;
 	m_NextDungeon = NULL;
+	m_Clock_PreHandleInput = clock();
 }
 
 CDungeon_SelectDungeon::~CDungeon_SelectDungeon()
@@ -41,8 +45,8 @@ void CDungeon_SelectDungeon::HandleMouse(int Event, int x, int y, int flags, voi
 			m_SelectedDungeon = DUNGEON_ROLLAND;
 		if (x >= 360 && y >= 170 && x <= 360 + 150 && y <= 170 + 68)
 			m_SelectedDungeon = DUNGEON_ROLLANDDEEP;
-
-
+		if (x >= 558 && y >= 344 && x <= 558 + 150 && y <= 344 + 68)
+			m_SelectedDungeon = DUNGEON_MAZE;
 		break;
 	}
 
@@ -50,6 +54,9 @@ void CDungeon_SelectDungeon::HandleMouse(int Event, int x, int y, int flags, voi
 
 void CDungeon_SelectDungeon::DoHandleInput(int input)
 {
+	if (clock() - m_Clock_PreHandleInput < 500)
+		return;
+	m_Clock_PreHandleInput = clock();
 	switch (input)
 	{
 	case KEY_SPACE:
@@ -65,6 +72,20 @@ void CDungeon_SelectDungeon::DoHandleInput(int input)
 			m_NextDungeon = new CDungeon_RollandDeep();
 			return;
 		}
+		else if (m_SelectedDungeon == DUNGEON_MAZE)
+		{
+			m_Quit = true;
+			m_NextDungeon = new CDungeon_Maze();
+			return;
+		}
+		break;
+	case KEY_MOVE_LEFT:
+			if (m_SelectedDungeon > ROLLAND)
+				m_SelectedDungeon--;
+		break;
+	case KEY_MOVE_RIGHT:
+			if (m_SelectedDungeon < DUNGEON_MAZE)
+				m_SelectedDungeon++;
 		break;
 	}
 }
@@ -73,12 +94,12 @@ void CDungeon_SelectDungeon::Update()
 {
 
 }
-
 void CDungeon_SelectDungeon::DoRender(Mat& mat)
 {
 	s_Mat_BG.copyTo(mat);
 	__RenderDungeonPix(mat, DUNGEON_ROLLAND, m_SelectedDungeon == DUNGEON_ROLLAND);
 	__RenderDungeonPix(mat, DUNGEON_ROLLANDDEEP, m_SelectedDungeon == DUNGEON_ROLLANDDEEP);
+	__RenderDungeonPix(mat, DUNGEON_MAZE, m_SelectedDungeon == DUNGEON_MAZE);
 }
 
 void CDungeon_SelectDungeon::DoInitDungeon()

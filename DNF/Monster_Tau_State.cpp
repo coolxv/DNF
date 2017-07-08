@@ -98,37 +98,6 @@ void CMonster_Tau_AttackingState::Update()
 	Rect AttackRect = character->GetAttackRect();
 	Rect intersection = (MonsterBodyRect&AttackRect);
 
-	//牛头怪攻击时被攻击不会被打断，但是有伤害
-	if (intersection.area() != 0 && character->GetAttacking())
-	{
-		//m_Monster->SetState(new CMonster_Tau_BeAttackedState(m_Monster));
-		int charactMatId = character->GetCurState()->GetMatId();
-		int characteffect = character->GetCurEffect();
-		if ((characteffect == EFFECTX || characteffect == EFFECTZ || characteffect == EFFECTS || characteffect == EFFECTS2 || characteffect == EFFECTD)
-			&& m_beattackId != charactMatId)
-			m_beattackId = charactMatId;
-		{
-			int damage = -INF;
-			bool crit = false; //暴击l
-
-			damage = character->GetDamage(character->GetCurEffect(), crit);
-
-			Point3i point3 = Point3i(intersection.x + intersection.width / 2,
-				intersection.y + intersection.height / 2,
-				m_Monster->GetHeight());
-			CPhysicalAttackAnimation* PhyAttackAnimation =
-				new CPhysicalAttackAnimation(point3, 0);
-			character->GetAnimationEffects()->push_back(PhyAttackAnimation);
-
-			damage -= m_Monster->GetArmor();
-			m_Monster->SetHp(m_Monster->GetHp() - damage);
-			character->GetAnimationEffects()->push_back(
-				new CNumberAnimation(damage, Point3i(m_Monster->GetX(), m_Monster->GetY(), m_Monster->GetHeight() * 2),
-					crit ? 1 : 0));
-		}
-		
-	}
-
 	if (cur - m_Clock_PreUpdate > m_Monster->GetNAttackSpeed())
 	{
 		m_MatId++;
@@ -251,7 +220,7 @@ void CMonster_Tau_Roar::Update()
 	clock_t cur = clock();
 	CCharacter* character = m_Monster->GetStage()->GetCharacter();
 
-	if (cur - m_Clock_PreUpdate > 500)
+	if (cur - m_Clock_PreUpdate > 800)
 	{
 		m_Clock_PreUpdate = cur;
 		if (m_MatId == 31)

@@ -9,7 +9,6 @@ public:
 
 	void DoInitDungeon();
 
-
 	void DoRender(Mat& mat);
 };
 

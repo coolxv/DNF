@@ -20,12 +20,12 @@ void CDungeon_Start::DoHandleInput(int input)
 void CDungeon_Start::Update()
 {
 	clock_t cur = clock();
-	if (cur - m_Clock_Statr > 6000)
+	if (cur - m_Clock_Start > 6000)
 	{
 		m_Quit = true;
 		m_NextDungeon = new CDungeon_Comics();
 	}
-	if (cur  - m_Clock_PreUpdae > 100 && cur-m_Clock_Statr<3000)
+	if (cur  - m_Clock_PreUpdae > 100 && cur-m_Clock_Start<3000)
 	{
 		m_Clock_PreUpdae = clock();
 		if (m_DotMatId == 23)
@@ -37,7 +37,7 @@ void CDungeon_Start::Update()
 
 void CDungeon_Start::DoRender(Mat& mat)
 {
-	if(clock()-m_Clock_Statr>3000)
+	if(clock()-m_Clock_Start>3000)
 		m_Mat_BG_Loading.copyTo(mat);
 	else
 		m_Mat_BG.copyTo(mat);
@@ -49,7 +49,7 @@ void CDungeon_Start::DoInitDungeon()
 {
 	m_Quit = false;
 	m_NextDungeon = NULL;
-	m_Clock_Statr = clock();
+	m_Clock_Start = clock();
 	m_Clock_PreUpdae = 0;
 
 	m_Mat_BG = imread("./ImagePacks2/Map/start/bg.png", -1);

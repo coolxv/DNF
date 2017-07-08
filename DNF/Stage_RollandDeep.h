@@ -44,7 +44,7 @@ class RollandDeepStage2 :
 public:
 	void InitStage();
 
-	RollandDeepStage2() { SetStageWidth(RollandDeepStageWidths[2]); };
+	RollandDeepStage2() { SetStageWidth(RollandDeepStageWidths[2]); m_IsBossRoom = true; };
 	~RollandDeepStage2() {};
 };
 

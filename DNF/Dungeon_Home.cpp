@@ -74,7 +74,7 @@ void CDungeon_Home::Update()
 	m_Character->UpdateState();
 	int cx = m_Character->GetX();
 	int cy = m_Character->GetY();
-	if ((cx >= 330 || cx <= 580) && cy == 180 && m_Quit == false)
+	if ((cx >= 330 || cx <= 580) && cy == 170 && m_Quit == false)
 	{
 		m_Quit = true;
 		m_NextDungeon = new CDungeon_SelectDungeon();

@@ -55,10 +55,28 @@ void RollandDeepStage0::InitStage()
 	//生成门
 	m_RightGate = _CreatGate(DIR_RIGHT);
 	m_OtherObjects.push_back(m_RightGate);
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	//生成怪物
 	if (!IsClearance())
 	{
 		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);
+		m_Monsters.push_back(mp);
+
+		mp = new CMonster_Goblin(this, 400, 150, 0);
+		m_Monsters.push_back(mp);
+
+		mp = new CMonster_Goblin(this, 300, 120, 0);
+		m_Monsters.push_back(mp);
+
+		mp = new CMonster_Goblin(this, 500, 130, 0);
+		m_Monsters.push_back(mp);
+
+		mp = new CMonster_Goblin(this, 300, 60, 0);
+		m_Monsters.push_back(mp);
+
+		mp = new CMonster_Goblin(this, 340, 70, 0);
 		m_Monsters.push_back(mp);
 	}
 }
@@ -71,10 +89,23 @@ void RollandDeepStage1::InitStage()
 	m_TopGate = _CreatGate(DIR_UP);
 	m_OtherObjects.push_back(m_LeftGate);
 	m_OtherObjects.push_back(m_TopGate);
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	//生成怪物
 	if (!IsClearance())
 	{
-		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);
+		CMonster* mp = new CMonster_Goblin(this, 200, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 250, 120, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 300, 70, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 320, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 400, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 500, 100, 0);
 		m_Monsters.push_back(mp);
 	}
 }
@@ -87,11 +118,35 @@ void RollandDeepStage2::InitStage()
 	m_RightGate = _CreatGate(DIR_RIGHT);
 	m_OtherObjects.push_back(m_RightGate);
 	m_IsBossRoom = true;
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	//生成怪物
 	if (!IsClearance())
 	{
 		CMonster* mp = new CMonSter_Tau(this, 300, 100, 0);
 		mp->SetIsBoss(true);
+		m_Monsters.push_back(mp);
+
+		mp = new CMonster_Goblin(this, 120, 130, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 100, 60, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 70, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 250, 120, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 300, 70, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 320, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 100, 150, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 150, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 200, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 100, 100, 0);
 		m_Monsters.push_back(mp);
 	}
 }
@@ -109,10 +164,23 @@ void RollandDeepStage3::InitStage()
 	m_OtherObjects.push_back(m_BottomGate);
 	m_OtherObjects.push_back(m_LeftGate);
 	m_OtherObjects.push_back(m_RightGate);
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	//生成怪物
 	if (!IsClearance())
 	{
-		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);
+		CMonster* mp = new CMonster_Goblin(this, 200, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 250, 120, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 300, 70, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 320, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 400, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 500, 100, 0);
 		m_Monsters.push_back(mp);
 	}
 }
@@ -124,10 +192,23 @@ void RollandDeepStage4::InitStage()
 	//生成门
 	m_LeftGate = _CreatGate(DIR_LEFT);
 	m_OtherObjects.push_back(m_LeftGate);
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	//生成怪物
 	if (!IsClearance())
 	{
-		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);
+		CMonster* mp = new CMonster_Goblin(this, 200, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 250, 120, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 300, 70, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 320, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 400, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 500, 100, 0);
 		m_Monsters.push_back(mp);
 	}
 }
@@ -139,10 +220,23 @@ void RollandDeepStage5::InitStage()
 	//生成门
 	m_RightGate = _CreatGate(DIR_RIGHT);
 	m_OtherObjects.push_back(m_RightGate);
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	//生成怪物
 	if (!IsClearance())
 	{
-		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);
+		CMonster* mp = new CMonster_Goblin(this, 200, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 250, 120, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 300, 70, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 320, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 400, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 500, 100, 0);
 		m_Monsters.push_back(mp);
 	}
 }
@@ -156,10 +250,23 @@ void RollandDeepStage6::InitStage()
 	m_BottomGate = _CreatGate(DIR_DOWN);
 	m_OtherObjects.push_back(m_LeftGate);
 	m_OtherObjects.push_back(m_BottomGate);
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	//生成怪物
 	if (!IsClearance())
 	{
-		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);
+		CMonster* mp = new CMonster_Goblin(this, 200, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 250, 120, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 300, 70, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_Goblin(this, 320, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 400, 100, 0);
+		m_Monsters.push_back(mp);
+		mp = new CMonster_BossGoblin(this, 500, 100, 0);
 		m_Monsters.push_back(mp);
 	}
 }

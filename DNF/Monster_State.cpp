@@ -47,6 +47,11 @@ void CMonster_BeAttackedState::Update()
 		bool crit = false; //±©»÷
 		if (character->GetCurEffect() == EFFECTX) //ÆÕÍ¨¹¥»÷
 		{
+			if (RANDNUM(1, 100) < 5)
+			{
+				SwitchStanding();
+				return;
+			}
 			m_AttackCnt++;
 			damage = character->GetDamage('j', crit);
 			m_Clock_PreUpdate = cur;

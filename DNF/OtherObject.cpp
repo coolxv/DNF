@@ -115,7 +115,6 @@ Gate::Gate(int position, int x, int y, CStage* stage) :m_GatePosition(position),
 		m_MatId = CLOSE_GATE;
 		m_GateTYpe = CLOSE_GATE;
 	}
-	Update();
 }
 
 Gate::~Gate()
@@ -330,6 +329,8 @@ void Tree::DoRender(Mat & mat, int viewX)
 			m_Mat_RenderMat = m_Mat_RenderMat.colRange(0,  CStage::s_ViewWidth - x-1);
 			m_Mat_RenderMat_Mask = m_Mat_RenderMat_Mask.colRange(0, CStage::s_ViewWidth - x - 1);
 		}
+
+		if (x + m_Mat_RenderMat.cols >= mat.cols || y + m_Mat_RenderMat.rows >= mat.rows)return;
 		Mat ROI = mat(Rect(x, y, m_Mat_RenderMat.cols, m_Mat_RenderMat.rows));
 		m_Mat_RenderMat.copyTo(ROI, m_Mat_RenderMat_Mask);
 	}
@@ -487,10 +488,10 @@ void Meat::DoRender(Mat& mat, int viewX)
 		int _z = it->Pos.z;
 		m_Mat_RenderMat = s_Mat_Meat[m_MeatType][it->Type];
 		m_Mat_RenderMat_Mask = s_Mat_Meat[m_MeatType][it->Type];
-		if (_x + m_Mat_RenderMat.cols > viewX && _x < viewX + CStage::s_ViewWidth)
+		if (_x + m_Mat_RenderMat.cols > viewX && _x < viewX + CStage::s_ViewWidth && _y<CStage::s_ViewHeight)
 		{
 			int x = _x - viewX, y = _y + CStage::s_OffsetY - m_Mat_RenderMat.rows - _z / 2; //相对坐标
-			if (y >= CStage::s_ViewWidth)continue;
+			//if (y >= CStage::s_ViewHeight)continue;
 			if (x<0) //只显示部分
 			{
 				m_Mat_RenderMat = m_Mat_RenderMat.colRange(abs(x), m_Mat_RenderMat.cols - 1);

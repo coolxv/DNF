@@ -98,6 +98,7 @@ void CPhysicalAttackAnimation::DoRender(Mat& mat, int viewX)
 		tmp = s_Mat_Slash[m_Type][m_MatId];
 		tmp_ = s_Mat_Slash_Mask[m_Type][m_MatId];
 	}
+	if (xx + tmp.cols >= mat.cols || yy + tmp.rows >= mat.rows)return;
 	Mat ROI = mat(Rect(xx, yy, tmp.cols, tmp.rows));
 	tmp.copyTo(ROI, tmp_);
 	if (clock() - m_Clock_PreRender > 80)

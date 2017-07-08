@@ -27,12 +27,8 @@ void RollandStage0::InitStage()
 {
 	SetStageWidth(RollandStageWidths[0]);
 	//生成树
-	m_OtherObjects.push_back(new Tree(100, 10, 0));
-	m_OtherObjects.push_back(new Tree(87, 30, 0));
-	m_OtherObjects.push_back(new Tree(78, 50, 0));
-	m_OtherObjects.push_back(new Tree(80, 70, 0));
-	m_OtherObjects.push_back(new Tree(66, 90, 0));
-	m_OtherObjects.push_back(new Tree(74, 110, 0));
+	for (int i = 0; i < 5;i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10,m_StageWidth), RANDNUM(10,180), 0));
 	//生成门
 	m_BottomGate = new Gate(Gate::BOTTOM_GATE, m_StageWidth / 2 -86, s_ViewHeight - 1, this);
 	m_RightGate = new Gate(Gate::RIGHT_GATE, m_StageWidth - 100, 100, this);
@@ -72,6 +68,9 @@ void RollandStage1::InitStage()
 	m_LeftGate = new Gate(Gate::LEFT_GATE, -45, 100, this);
 	m_OtherObjects.push_back(m_LeftGate);
 
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	if (!IsClearance())
 	{
 		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);
@@ -102,6 +101,9 @@ void RollandStage2::InitStage()
 	m_BottomGate = new Gate(Gate::BOTTOM_GATE, m_StageWidth / 2 - 86, s_ViewHeight - 1, this);
 	m_OtherObjects.push_back(m_BottomGate);
 
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	if (!IsClearance())
 	{
 		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);
@@ -125,7 +127,10 @@ void RollandStage3::InitStage()
 	m_OtherObjects.push_back(m_BottomGate);
 	m_LeftGate = new Gate(Gate::LEFT_GATE, -45, 100, this);
 	m_OtherObjects.push_back(m_LeftGate);
-	
+
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	if (!IsClearance())
 	{
 		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);
@@ -153,6 +158,9 @@ void RollandStage4::InitStage()
 	m_RightGate = new Gate(Gate::RIGHT_GATE, m_StageWidth  - 100, 100, this);
 	m_OtherObjects.push_back(m_RightGate);
 
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	if (!IsClearance())
 	{
 		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);
@@ -171,6 +179,9 @@ void RollandStage5::InitStage()
 	m_LeftGate = new Gate(Gate::LEFT_GATE, -45, 100, this);
 	m_OtherObjects.push_back(m_LeftGate);
 
+	//生成树
+	for (int i = 0; i < 5; i++)
+		m_OtherObjects.push_back(new Tree(RANDNUM(10, m_StageWidth), RANDNUM(10, 180), 0));
 	if (!IsClearance())
 	{
 		CMonster* mp = new CMonster_Goblin(this, 300, 100, 0);

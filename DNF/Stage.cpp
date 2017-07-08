@@ -61,6 +61,12 @@ void CStage::QuitStage()
 		delete (*it);
 	}
 	m_OtherObjects.clear();
+
+	for (auto it = m_Monsters.begin(); it != m_Monsters.end(); it++)
+	{
+		delete (*it);
+	}
+	m_Monsters.clear();
 }
 
 CStage::CStage()
@@ -70,6 +76,21 @@ CStage::CStage()
 	m_TargetMonsterHp_Animation = 0;
 }
 
+
+CStage::~CStage()
+{
+	for (auto it = m_OtherObjects.begin(); it != m_OtherObjects.end(); it++)
+	{
+		delete (*it);
+	}
+	m_OtherObjects.clear();
+
+	for (auto it = m_Monsters.begin(); it != m_Monsters.end();it++)
+	{
+		delete (*it);
+	}
+	m_Monsters.clear();
+}
 
 void CStage::Render(Mat& mat)
 {

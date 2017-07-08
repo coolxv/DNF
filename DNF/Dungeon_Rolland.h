@@ -15,6 +15,7 @@ public:
 
 
 private:
+	Mat m_Mat_DungeonLoading;
 	Mat m_Mat_MinMapBG,m_Mat_MinMapBG_Mask;
 	Mat m_Mat_MinMap[6];
 	Mat m_Mat_MinMap_Character, m_Mat_MinMap_Character_Mask;

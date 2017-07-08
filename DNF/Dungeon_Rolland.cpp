@@ -69,6 +69,7 @@ void CDungeon_Rolland::DoInitDungeon()
 	m_Character->SetY(10);
 	m_Character->SetZ(0);
 
+	m_Clock_Start = clock();
 	m_Mat_MinMapBG = imread("./ImagePacks2/Map/0/mapbg.png", -1);
 	m_Mat_MinMapBG_Mask = imread("./ImagePacks2/Map/0/mapbg.png", 0);
 	m_Mat_MinMap_Character = imread("./ImagePacks2/Map/0/character.png", -1);
@@ -105,10 +106,15 @@ void CDungeon_Rolland::DoInitDungeon()
 
 void CDungeon_Rolland::DoRender(Mat& mat)
 {
+	if (clock() - m_Clock_Start < 3000)
+	{
+		s_Mat_DungeonLoading.copyTo(mat);
+		return;
+	}
 	m_CurStage->Render(mat);
 
 	//ªÊ÷∆–°µÿÕº
-	 
+	if (!m_ShowMinMap)return;
 	m_Mat_MinMapBG.copyTo(mat(Rect(498, 10, m_Mat_MinMapBG.cols, m_Mat_MinMapBG.rows)), m_Mat_MinMapBG_Mask);
 	clock_t cur = clock();
 	for (int i = 0; i < 6; i++)

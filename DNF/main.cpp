@@ -7,6 +7,7 @@
 #include "Game.h"
 #include "OtherObject.h"
 #include "stdafx.h"
+
 using namespace cv;
 CGame game;
 

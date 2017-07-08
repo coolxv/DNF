@@ -1,18 +1,21 @@
 #include "Dungeon.h"
 #include "Stage_Rolland.h"
+#include "Dungeon_Home.h"
 #include "Monster.h"
 #include "Monster_State.h"
 #include "CharacterState.h"
 #include "ObjectBase.h"
 
+Mat CDungeon::s_Mat_DungeonLoading = imread("./ImagePacks2/Map/dungeonload.png", -1);
 CDungeon::CDungeon()
 {
-	m_Clock_Statr = clock();
+	m_Clock_Start = clock();
 	m_GameOver = false;
 	m_score = 0;
 	m_IsClearance = false;
 	if(m_Character)
 		m_Character->SetState(&s_Standing);
+	m_ShowMinMap = true;
 }
 
 
@@ -63,6 +66,17 @@ void CDungeon::_Merge(Mat& a, Mat& b, int x, int y, int alpha)
 
 void CDungeon::DoHandleInput(int input)
 {
+	if (input == 'B')
+	{
+		m_Quit = true;
+		m_NextDungeon = new CDungeon_Home();
+		return;
+	}
+	else if (input == 'N' && clock()-m_Clock_PreHandleInput>1000)
+	{
+		m_Clock_PreHandleInput = clock();
+		m_ShowMinMap = !m_ShowMinMap;
+	}
 	m_CurStage->HandleInput(input);
 	//mCharacter->handleInput(input);
 }
@@ -75,16 +89,17 @@ void CDungeon::Update()
 	if (m_CurStage->IsBossRoom() && m_CurStage->IsClearance() && m_IsClearance == false)
 	{
 		m_IsClearance = true;
-		int ms = clock() - m_Clock_Statr;
+		int ms = clock() - m_Clock_Start;
 		int score = m_score - ms;
 		int min = (ms / 60000);
 		ms -= min * 60000;
 		int sec = ms / 1000;
 		ms -= sec * 1000;
 		int lsec = ms * 60 / 1000;
+		if (score < 0)score = RANDNUM(1000,1000000);
 		m_Character->GetAnimationEffects()->push_back(
-			new CResultAnimation(score >= 0 ? score :RANDNUM(0,8), RANDNUM(10000,100000), 
-				score, min, sec, lsec, min, sec, lsec, this));
+			new CResultAnimation(score,RANDNUM(0,8), RANDNUM(10000,100000),
+				min, sec, lsec, min, sec, lsec, this));
 	}
 	if (m_Character->GetDead()&& !m_GameOver)
 	{

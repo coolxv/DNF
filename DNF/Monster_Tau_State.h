@@ -30,9 +30,6 @@ public:
 	~CMonster_Tau_AttackingState() {};
 	void InitState();
 	void Update();
-
-private:
-	int m_beattackId; //记录在攻击时被攻击的id
 };
 
 class CMonster_Tau_BeAttackedState

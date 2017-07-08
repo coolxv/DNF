@@ -26,7 +26,7 @@ public:
 	virtual void InitStage() {};  //由子类覆盖 ,进行资源的初始化和物体的载入 每次进入该场景需要调用一次
 	virtual void QuitStage() ; //离开当前调用，用于释放资源
 	CStage() ;
-	virtual ~CStage() {};
+	virtual ~CStage();
 	void HandleInput(int input);
 	virtual void Render(Mat& mat);
 	virtual void Update(CDungeon* dungeon); 

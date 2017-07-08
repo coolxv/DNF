@@ -6,13 +6,13 @@ class CDungeon_SelectDungeon :
 {
 	enum DUNGEON
 	{
-		DUNGEON_ROLLAND, DUNGEON_ROLLANDDEEP, DUNGEON_NONE
+		DUNGEON_ROLLAND, DUNGEON_ROLLANDDEEP, DUNGEON_MAZE,DUNGEON_NONE
 	};
 public:
 	static Mat s_Mat_BG;
-	static Mat s_Mat_DungeonPix[2], s_Mat_DungeonPix_Select[2];
-	static int s_PixPos[2][2];
-	static int s_SelectPixPos[2][2];
+	static Mat s_Mat_DungeonPix[3], s_Mat_DungeonPix_Select[3];
+	static int s_PixPos[3][2];
+	static int s_SelectPixPos[3][2];
 public:
 	CDungeon_SelectDungeon();
 	~CDungeon_SelectDungeon();

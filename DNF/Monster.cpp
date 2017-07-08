@@ -12,6 +12,10 @@ CMonster::CMonster()
 
 CMonster::~CMonster()
 {
+	if (m_State)
+	{
+		delete m_State;
+	}
 }
 void CMonster::SetState(CMonster_State* state)
 {

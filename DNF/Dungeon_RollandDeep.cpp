@@ -83,10 +83,16 @@ void CDungeon_RollandDeep::DoInitDungeon()
 	m_Character->SetX(180);
 	m_Character->SetY(10);
 	m_Character->SetZ(0);
+	m_Clock_Start = clock();
 }
 
 void CDungeon_RollandDeep::DoRender(Mat& mat)
 {
+	if (clock() - m_Clock_Start < 3000)
+	{
+		s_Mat_DungeonLoading.copyTo(mat);
+		return;
+	}
 	m_CurStage->Render(mat);
 
 }
